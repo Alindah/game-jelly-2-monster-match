@@ -1,5 +1,7 @@
-using System.Linq;
+using System;
 using UnityEngine;
+using static Traits;
+using static GameConfig;
 
 public class SaveManager : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class SaveManager : MonoBehaviour
 
     public static string playerName = "Quasimodo";
     public static string playerAge = "1000";
-    public static int[] traitsIndex = { 0, 1, 2 };
+    public static int[] traitsIndex;
 
     private void Awake()
     {
@@ -21,32 +23,28 @@ public class SaveManager : MonoBehaviour
         // Prevent this game object from being destroyed upon restart
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        InitializeTraits();
-    }
-
-    private void Start()
-    {
-        
     }
 
     // Initialize traits randomly
-    private void InitializeTraits()
+    public static void InitializeTraits()
     {
-        traitsIndex = new int[GameConfig.numOfTraits];
-
-        for (int i = 0; i < GameConfig.numOfTraits; i++)
+        traitsIndex = new int[numOfTraits];
+        
+        // Select traits
+        for (int i = 0; i < numOfTraits; i++)
         {
             // Only select from first half of traits list to avoid opposing traits
-            int randomInt = Random.Range(0, GameConfig.numOfTraits / 2);
+            int randomInt = UnityEngine.Random.Range(0, traits.Count / 2);
 
             // Keep cycling if we have already picked that trait
-            while (traitsIndex.Contains(randomInt))
-                randomInt = Random.Range(0, GameConfig.numOfTraits / 2);
+            while (Array.Exists(traitsIndex, x => x == randomInt))
+                randomInt = UnityEngine.Random.Range(0, traits.Count / 2);
 
-            // Random chance to choose an opposing trait instead
-            traitsIndex[i] = randomInt + GameConfig.numOfTraits / 2 * Random.Range(0, 2);
+            traitsIndex[i] = randomInt;
         }
-    }
 
+        // Random chance to choose an opposing trait instead
+        for (int i = 0; i < numOfTraits; i++)
+            traitsIndex[i] += (traits.Count / 2) * UnityEngine.Random.Range(0, 2);
+    }
 }
