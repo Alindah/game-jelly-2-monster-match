@@ -48,11 +48,8 @@ public class Traits : MonoBehaviour
                 traitsTransform);
 
             traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
-        }
-
-        foreach (TMP_Dropdown dd in traitDropdowns)
-        {
-            dd.AddOptions(traits);
+            traitDropdowns[i].AddOptions(traits);
+            traitDropdowns[i].value = SaveManager.traitsIndex[i];
         }
     }
 }
