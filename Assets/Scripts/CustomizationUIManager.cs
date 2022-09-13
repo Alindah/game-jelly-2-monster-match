@@ -10,8 +10,12 @@ public class CustomizationUIManager : MonoBehaviour
     public GameObject traitDropdownObj;
     public Transform traitsTransform;
     public float traitsDropdownSpacing; // Spacing between traits dropdown boxes
+    public Color warningColor;
 
     private TMP_Dropdown[] traitDropdowns;
+    private bool validPlayer = true;
+    private Color dropdownColor;
+    private Color dropdownTextColor;
 
     private void Start()
     {
@@ -19,6 +23,8 @@ public class CustomizationUIManager : MonoBehaviour
         ageField.text = playerAge;
         InitializeTraits();
         PopulateTraitsDropdown();
+        dropdownColor = traitDropdowns[0].colors.normalColor;
+        dropdownTextColor = traitDropdowns[0].GetComponentInChildren<TMP_Text>().color;
     }
 
     // Populate dropdown with traits
@@ -36,7 +42,41 @@ public class CustomizationUIManager : MonoBehaviour
 
             traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
             traitDropdowns[i].AddOptions(traits);
-            traitDropdowns[i].value = traitsIndex[i];
+            traitDropdowns[i].value = playerTraits[i];
+        }
+
+        foreach (TMP_Dropdown dd in traitDropdowns)
+        {
+            dd.onValueChanged.AddListener(delegate
+            {
+                UpdateTraitsDropdown(dd);
+            });
+        }
+    }
+
+    // Check if dropdown contains duplicate traits or opposing traits and show in red if so
+    public void UpdateTraitsDropdown(TMP_Dropdown dropdown)
+    {
+        int dropdownIndex = System.Array.IndexOf(traitDropdowns, dropdown);
+        playerTraits[dropdownIndex] = dropdown.value;
+
+        for (int i = 0; i < traitDropdowns.Length; i++)
+        {
+            if (i == dropdownIndex)
+                continue;
+
+            if (dropdown.value == traitDropdowns[i].value || dropdown.value == GetOppositeTraitIndex(traitDropdowns[i].value))
+            {
+                Debug.Log("red");
+                dropdown.GetComponentInChildren<TMP_Text>().color = warningColor;
+                traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = warningColor;
+            }
+            else
+            {
+                Debug.Log("fine");
+                dropdown.GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
+                traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
+            }
         }
     }
 }

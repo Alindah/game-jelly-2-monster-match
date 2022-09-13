@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using static Traits;
 using static GameConfig;
@@ -9,7 +8,7 @@ public class SaveManager : MonoBehaviour
 
     public static string playerName = "Quasimodo";
     public static string playerAge = "1000";
-    public static int[] traitsIndex;
+    public static int[] playerTraits;
 
     private void Awake()
     {
@@ -28,23 +27,23 @@ public class SaveManager : MonoBehaviour
     // Initialize traits randomly
     public static void InitializeTraits()
     {
-        traitsIndex = new int[numOfTraits];
+        playerTraits = new int[numOfTraits];
         
         // Select traits
         for (int i = 0; i < numOfTraits; i++)
         {
             // Only select from first half of traits list to avoid opposing traits
-            int randomInt = UnityEngine.Random.Range(0, traits.Count / 2);
+            int randomInt = Random.Range(0, traits.Count / 2);
 
             // Keep cycling if we have already picked that trait
-            while (Array.Exists(traitsIndex, x => x == randomInt))
-                randomInt = UnityEngine.Random.Range(0, traits.Count / 2);
+            while (System.Array.Exists(playerTraits, x => x == randomInt))
+                randomInt = Random.Range(0, traits.Count / 2);
 
-            traitsIndex[i] = randomInt;
+            playerTraits[i] = randomInt;
         }
 
         // Random chance to choose an opposing trait instead
         for (int i = 0; i < numOfTraits; i++)
-            traitsIndex[i] += (traits.Count / 2) * UnityEngine.Random.Range(0, 2);
+            playerTraits[i] += (traits.Count / 2) * Random.Range(0, 2);
     }
 }
