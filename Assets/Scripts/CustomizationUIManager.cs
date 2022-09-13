@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using static Traits;
+using static SaveManager;
 
 public class CustomizationUIManager : MonoBehaviour
 {
@@ -13,9 +15,9 @@ public class CustomizationUIManager : MonoBehaviour
 
     private void Start()
     {
-        nameField.text = SaveManager.playerName;
-        ageField.text = SaveManager.playerAge;
-        SaveManager.InitializeTraits();
+        nameField.text = playerName;
+        ageField.text = playerAge;
+        InitializeTraits();
         PopulateTraitsDropdown();
     }
 
@@ -33,8 +35,8 @@ public class CustomizationUIManager : MonoBehaviour
                 traitsTransform);
 
             traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
-            traitDropdowns[i].AddOptions(Traits.traits);
-            traitDropdowns[i].value = SaveManager.traitsIndex[i];
+            traitDropdowns[i].AddOptions(traits);
+            traitDropdowns[i].value = traitsIndex[i];
         }
     }
 }

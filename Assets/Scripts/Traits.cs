@@ -24,4 +24,17 @@ public class Traits : MonoBehaviour
         "Good",
         "Silly",
     };
+
+    // Return opposite trait as a string
+    public static string GetOppositeTrait(int traitIndex)
+    {
+        return traits[GetOppositeTraitIndex(traitIndex)];
+    }
+
+    // Return opposite trait as an index
+    public static int GetOppositeTraitIndex(int traitIndex)
+    {
+        int opposingTraitIndex = traitIndex < traits.Count / 2 ? traitIndex + traits.Count / 2 : traitIndex - traits.Count / 2;
+        return opposingTraitIndex;
+    }
 }
