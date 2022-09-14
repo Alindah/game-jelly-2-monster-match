@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static Traits;
+using static GameConfig;
 using static SaveManager;
 using static Constants;
 
@@ -26,6 +27,7 @@ public class CustomizationUIManager : MonoBehaviour
         PopulateTraitsToggles();
     }
 
+    // Populate Traits field with toggles
     public void PopulateTraitsToggles()
     {
         Transform column1 = traitsTransform.Find(COLUMN1_NAME);
@@ -33,23 +35,41 @@ public class CustomizationUIManager : MonoBehaviour
 
         traitToggles = new Toggle[traits.Count];
 
-        // Populate 
+        // Create toggles for each 
         for (int i = 0; i < traits.Count / 2; i++)
         {
+            // Instantiate toggles on first column
             GameObject obj = Instantiate(traitToggleObj,
                 new Vector2(column1.position.x, column1.position.y + traitsToggleSpacing * i),
                 Quaternion.identity,
                 column1);
 
+            // Instatiate toggles on second column
             GameObject obj2 = Instantiate(traitToggleObj,
                 new Vector2(column2.position.x, column2.position.y + traitsToggleSpacing * i),
                 Quaternion.identity,
                 column2);
 
-            obj.GetComponentInChildren<Text>().text = traits[i];
-            obj2.GetComponentInChildren<Text>().text = traits[i + traits.Count / 2];
+            // Set trait names for toggles
+            obj.GetComponentInChildren<Text>().text = traits[i].Item2;
+            obj2.GetComponentInChildren<Text>().text = traits[i + traits.Count / 2].Item2;
+
+            // Store Toggles in array
+            traitToggles[i] = obj.GetComponent<Toggle>();
+            traitToggles[i + traits.Count / 2] = obj2.GetComponent<Toggle>();
+        }
+
+        // Create listener to listen to changes
+        foreach (Toggle tog in traitToggles)
+        {
+            tog.onValueChanged.AddListener(delegate
+            {
+                OnClickTraitToggle(tog);
+            });
         }
     }
+
+    /*
 
     // Populate dropdown with traits
     public void PopulateTraitsDropdown()
@@ -68,40 +88,34 @@ public class CustomizationUIManager : MonoBehaviour
             traitDropdowns[i].AddOptions(traits);
             traitDropdowns[i].value = playerTraits[i];
         }
+    }*/
 
-        foreach (TMP_Dropdown dd in traitDropdowns)
-        {
-            dd.onValueChanged.AddListener(delegate
-            {
-                UpdateTraitsDropdown(dd);
-            });
-        }
-    }
-
-    // Check if dropdown contains duplicate traits or opposing traits and show in red if so
-    public void UpdateTraitsDropdown(TMP_Dropdown dropdown)
+    // Set or unset clicked trait to 
+    public void OnClickTraitToggle(Toggle toggle)
     {
-        int dropdownIndex = System.Array.IndexOf(traitDropdowns, dropdown);
-        playerTraits[dropdownIndex] = dropdown.value;
+        int toggleIndex = System.Array.IndexOf(traitToggles, toggle);
 
-        Debug.Log("dropdown " + dropdownIndex + " was changed");
-
-        for (int i = 0; i < traitDropdowns.Length; i++)
+        if (playerTraits.Count <= numOfTraits)
         {
-            if (i == dropdownIndex)
-                continue;
-
-            if (dropdown.value == traitDropdowns[i].value || dropdown.value == GetOppositeTraitIndex(traitDropdowns[i].value))
+            if (toggle.isOn)
             {
-                Debug.Log("red");
-                dropdown.GetComponentInChildren<TMP_Text>().color = warningColor;
-                //traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = warningColor;
+                playerTraits.Add(toggleIndex);
+                traitToggles[GetOppositeTraitIndex(toggleIndex)].interactable = false;
             }
             else
             {
-                Debug.Log("fine");
-                //dropdown.GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
-                //traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
+                playerTraits.Remove(toggleIndex);
+                traitToggles[GetOppositeTraitIndex(toggleIndex)].interactable = true;
+            }
+        }
+
+        // Disable all other traits if limit is reached
+        if (playerTraits.Count >= numOfTraits)
+        {
+            for (int i = 0; i < traitToggles.Length; i++)
+            {
+                if (!playerTraits.Contains(i))
+                    traitToggles[i].interactable = false;
             }
         }
     }

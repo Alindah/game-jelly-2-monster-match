@@ -3,32 +3,31 @@ using UnityEngine;
 
 public class Traits : MonoBehaviour
 {
-    // Need to be List<string> instead of array to add to TMP_Dropdown type as options
-    public static List<string> traits = new List<string>
+    public static List<(int, string)> traits = new List<(int, string)>
     {
         // Traits
-        "Sleepy",
-        "Sad",
-        "Angry",
-        "Slob",
-        "Aloof",
-        "Evil",
-        "Serious",
+        (0, "Sleepy"),
+        (1, "Sad"),
+        (2, "Angry"),
+        (3, "Slob"),
+        (4, "Aloof"),
+        (5, "Evil"),
+        (6, "Serious"),
 
         // Opposing traits - order must correspond with above traits
-        "Energetic",
-        "Happy",
-        "Calm",
-        "Neat",
-        "Romantic",
-        "Good",
-        "Silly",
+        (7, "Energetic"),
+        (8, "Happy"),
+        (9, "Calm"),
+        (10, "Neat"),
+        (11, "Romantic"),
+        (12, "Good"),
+        (13, "Silly")
     };
 
     // Return opposite trait as a string
     public static string GetOppositeTrait(int traitIndex)
     {
-        return traits[GetOppositeTraitIndex(traitIndex)];
+        return traits[GetOppositeTraitIndex(traitIndex)].Item2;
     }
 
     // Return opposite trait as an index

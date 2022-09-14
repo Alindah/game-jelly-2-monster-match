@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using static Traits;
 using static GameConfig;
 
@@ -8,7 +9,7 @@ public class SaveManager : MonoBehaviour
 
     public static string playerName = "Quasimodo";
     public static string playerAge = "1000";
-    public static int[] playerTraits;
+    public static List<int> playerTraits;
 
     private void Awake()
     {
@@ -26,9 +27,10 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        playerTraits = new int[numOfTraits];
+        playerTraits = new List<int>();
     }
 
+    /*
     // Initialize traits randomly
     public static void SelectRandomTraits()
     {
@@ -48,5 +50,5 @@ public class SaveManager : MonoBehaviour
         // Random chance to choose an opposing trait instead
         for (int i = 0; i < numOfTraits; i++)
             playerTraits[i] += (traits.Count / 2) * Random.Range(0, 2);
-    }
+    }*/
 }
