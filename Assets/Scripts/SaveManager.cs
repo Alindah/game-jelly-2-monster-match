@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using static Traits;
-using static GameConfig;
 
 public class SaveManager : MonoBehaviour
 {
@@ -29,26 +27,4 @@ public class SaveManager : MonoBehaviour
         playerTraits = new List<int>();
         opposingTraits = new List<int>();
     }
-
-    /*
-    // Initialize traits randomly
-    public static void SelectRandomTraits()
-    {
-        // Select traits
-        for (int i = 0; i < numOfTraits; i++)
-        {
-            // Only select from first half of traits list to avoid opposing traits
-            int randomInt = Random.Range(0, traits.Count / 2);
-
-            // Keep cycling if we have already picked that trait
-            while (System.Array.Exists(playerTraits, x => x == randomInt))
-                randomInt = Random.Range(0, traits.Count / 2);
-
-            playerTraits[i] = randomInt;
-        }
-
-        // Random chance to choose an opposing trait instead
-        for (int i = 0; i < numOfTraits; i++)
-            playerTraits[i] += (traits.Count / 2) * Random.Range(0, 2);
-    }*/
 }

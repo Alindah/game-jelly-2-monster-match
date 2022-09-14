@@ -21,7 +21,7 @@ public class CustomizationUIManager : MonoBehaviour
     public Color highlightedTextColor;
     public Color disabledTextColor;
 
-    private TMP_Dropdown[] traitDropdowns;
+    private TMP_Dropdown[] partsDropdowns;
     private Toggle[] traitToggles;
     private bool fullTraits = false;
     private string TRAITS_UI_TEXT;
@@ -65,8 +65,8 @@ public class CustomizationUIManager : MonoBehaviour
                 column2);
 
             // Set trait names for toggles
-            obj.GetComponentInChildren<Text>().text = traits[i].Item2;
-            obj2.GetComponentInChildren<Text>().text = traits[i + traits.Count / 2].Item2;
+            obj.GetComponentInChildren<Text>().text = traits[i];
+            obj2.GetComponentInChildren<Text>().text = traits[i + traits.Count / 2];
 
             // Store Toggles in array
             traitToggles[i] = obj.GetComponent<Toggle>();
@@ -83,28 +83,7 @@ public class CustomizationUIManager : MonoBehaviour
         }
     }
 
-    /*
-
-    // Populate dropdown with traits
-    public void PopulateTraitsDropdown()
-    {
-        traitDropdowns = new TMP_Dropdown[3];
-
-        // Create new dropdown objects depending on number of traits indicated
-        for (int i = 0; i < GameConfig.numOfTraits; i++)
-        {
-            GameObject obj = Instantiate(traitDropdownObj,
-                new Vector2(traitsTransform.position.x, traitsTransform.position.y + traitsDropdownSpacing * i),
-                Quaternion.identity,
-                traitsTransform);
-
-            traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
-            traitDropdowns[i].AddOptions(traits);
-            traitDropdowns[i].value = playerTraits[i];
-        }
-    }*/
-
-    // Set or unset clicked trait to 
+    // Manage toggles upon clicking
     public void OnClickTraitToggle(Toggle toggle)
     {
         int toggleIndex = System.Array.IndexOf(traitToggles, toggle);
@@ -170,4 +149,24 @@ public class CustomizationUIManager : MonoBehaviour
             }
         }
     }
+
+    /*
+    // Populate dropdown with body parts
+    public void PopulatePartsDropdown()
+    {
+        traitDropdowns = new partsDropdowns[3];
+
+        // Create new dropdown objects depending on number of traits indicated
+        for (int i = 0; i < GameConfig.numOfTraits; i++)
+        {
+            GameObject obj = Instantiate(traitDropdownObj,
+                new Vector2(traitsTransform.position.x, traitsTransform.position.y + traitsDropdownSpacing * i),
+                Quaternion.identity,
+                traitsTransform);
+
+            traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
+            traitDropdowns[i].AddOptions(traits);
+            traitDropdowns[i].value = playerTraits[i];
+        }
+    }*/
 }
