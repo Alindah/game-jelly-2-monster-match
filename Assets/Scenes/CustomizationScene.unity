@@ -686,7 +686,9 @@ MonoBehaviour:
   traitsTransform: {fileID: 2050777969}
   traitsDropdownSpacing: -48
   traitsToggleSpacing: -32
-  warningColor: {r: 0.8490566, g: 0, b: 0, a: 1}
+  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+  highlightedTextColor: {r: 1, g: 0.61960787, b: 0, a: 1}
+  disabledTextColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
 --- !u!1001 &2050777968
 PrefabInstance:
   m_ObjectHideFlags: 0

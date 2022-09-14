@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,7 +15,11 @@ public class CustomizationUIManager : MonoBehaviour
     public Transform traitsTransform;
     public float traitsDropdownSpacing; // Spacing between traits dropdown boxes
     public float traitsToggleSpacing;
-    public Color warningColor;
+
+    [Header("COLORS")]
+    public Color defaultTextColor;
+    public Color highlightedTextColor;
+    public Color disabledTextColor;
 
     private TMP_Dropdown[] traitDropdowns;
     private Toggle[] traitToggles;
@@ -100,17 +103,32 @@ public class CustomizationUIManager : MonoBehaviour
 
         if (playerTraits.Count <= numOfTraits)
         {
+            // Determine what happens when clicked
             if (toggle.isOn)
             {
+                // Add traits to respective lists
                 playerTraits.Add(toggleIndex);
                 opposingTraits.Add(opposingTraitIndex);
+
+                // Disable opposing trait's toggle
                 traitToggles[opposingTraitIndex].interactable = false;
+
+                // Set appropriate colors
+                traitToggles[toggleIndex].GetComponentInChildren<Text>().color = highlightedTextColor;
+                traitToggles[opposingTraitIndex].GetComponentInChildren<Text>().color = disabledTextColor;
             }
             else
             {
+                // Remove traits from respective lists
                 playerTraits.Remove(toggleIndex);
                 opposingTraits.Remove(opposingTraitIndex);
+
+                // Reenable opposing trait's toggle
                 traitToggles[opposingTraitIndex].interactable = true;
+
+                // Set appropriate colors
+                traitToggles[toggleIndex].GetComponentInChildren<Text>().color = defaultTextColor;
+                traitToggles[opposingTraitIndex].GetComponentInChildren<Text>().color = defaultTextColor;
 
                 // Reenable disabled toggles from when traits was last full
                 if (fullTraits)
@@ -118,7 +136,10 @@ public class CustomizationUIManager : MonoBehaviour
                     for (int i = 0; i < traitToggles.Length; i++)
                     {
                         if (!playerTraits.Contains(i) && !opposingTraits.Contains(i))
+                        {
                             traitToggles[i].interactable = true;
+                            traitToggles[i].GetComponentInChildren<Text>().color = defaultTextColor;
+                        }
                     }
                 }
             }
@@ -132,7 +153,10 @@ public class CustomizationUIManager : MonoBehaviour
             for (int i = 0; i < traitToggles.Length; i++)
             {
                 if (!playerTraits.Contains(i))
+                {
                     traitToggles[i].interactable = false;
+                    traitToggles[i].GetComponentInChildren<Text>().color = disabledTextColor;
+                }
             }
         }
     }
