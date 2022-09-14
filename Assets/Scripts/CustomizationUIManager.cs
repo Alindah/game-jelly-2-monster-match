@@ -8,8 +8,13 @@ using static Constants;
 
 public class CustomizationUIManager : MonoBehaviour
 {
+    [Header("INFO")]
     public TMP_InputField nameField;
     public TMP_InputField ageField;
+    public TMP_Text portraitHeader;
+    public TMP_Text portraitTraits;
+
+    [Header("TRAITS")]
     public GameObject traitDropdownObj;
     public GameObject traitToggleObj;
     public Transform traitsTransform;
@@ -24,19 +29,46 @@ public class CustomizationUIManager : MonoBehaviour
     private TMP_Dropdown[] partsDropdowns;
     private Toggle[] traitToggles;
     private bool fullTraits = false;
+
+    private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
 
     private void Start()
     {
+        // Set text templates
+        TRAITS_UI_TEXT = traitsTransform.GetComponentInChildren<TMP_Text>().text;
+        PORTRAIT_HEADER_TEXT = portraitHeader.text;
+
+        // Set initial info
         nameField.text = playerName;
         ageField.text = playerAge;
-        TRAITS_UI_TEXT = traitsTransform.GetComponentInChildren<TMP_Text>().text;
+
+        UpdatePortraitTraits();
         PopulateTraitsToggles();
+    }
+
+    // Make sure player is valid before allowing user to continue
+    public bool PlayerIsValid()
+    {
+        return playerName != "" && playerAge != "" && fullTraits; 
     }
 
     public void UpdateTraitsCountUI()
     {
         traitsTransform.GetComponentInChildren<TMP_Text>().text = string.Format(TRAITS_UI_TEXT, playerTraits.Count, numOfTraits);
+    }
+
+    // Update name on portrait as player types in name
+    public void UpdateInfoText()
+    {
+        portraitHeader.text = string.Format(PORTRAIT_HEADER_TEXT, nameField.text, ageField.text);
+    }
+
+    // Save player info
+    public void SaveInfo()
+    {
+        playerName = nameField.text;
+        playerAge = ageField.text;
     }
 
     // Populate Traits field with toggles
@@ -148,6 +180,18 @@ public class CustomizationUIManager : MonoBehaviour
                 }
             }
         }
+
+        UpdatePortraitTraits();
+    }
+
+    private void UpdatePortraitTraits()
+    {
+        string portraitText = "";
+
+        foreach (int i in playerTraits)
+            portraitText += traits[i] + "\n";
+
+        portraitTraits.text = portraitText;
     }
 
     /*
@@ -169,4 +213,12 @@ public class CustomizationUIManager : MonoBehaviour
             traitDropdowns[i].value = playerTraits[i];
         }
     }*/
+
+    public void FinalizePlayer()
+    {
+        if (PlayerIsValid())
+            GameController.MoveToScene(APP_SCENE);
+        else
+            Debug.Log("Invalid player!");
+    }
 }

@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
         GameConfig.numOfTraits = numOfTraits;
     }
 
-    public void MoveToScene(string sceneName)
+    public static void MoveToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
