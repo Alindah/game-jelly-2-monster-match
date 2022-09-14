@@ -24,10 +24,8 @@ public class SaveManager : MonoBehaviour
         // Prevent this game object from being destroyed upon restart
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {
+        // Create lists
         playerTraits = new List<int>();
         opposingTraits = new List<int>();
     }

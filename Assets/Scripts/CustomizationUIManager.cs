@@ -24,17 +24,26 @@ public class CustomizationUIManager : MonoBehaviour
     private TMP_Dropdown[] traitDropdowns;
     private Toggle[] traitToggles;
     private bool fullTraits = false;
+    private string TRAITS_UI_TEXT;
 
     private void Start()
     {
         nameField.text = playerName;
         ageField.text = playerAge;
+        TRAITS_UI_TEXT = traitsTransform.GetComponentInChildren<TMP_Text>().text;
         PopulateTraitsToggles();
+    }
+
+    public void UpdateTraitsCountUI()
+    {
+        traitsTransform.GetComponentInChildren<TMP_Text>().text = string.Format(TRAITS_UI_TEXT, playerTraits.Count, numOfTraits);
     }
 
     // Populate Traits field with toggles
     public void PopulateTraitsToggles()
     {
+        UpdateTraitsCountUI();
+
         Transform column1 = traitsTransform.Find(COLUMN1_NAME);
         Transform column2 = traitsTransform.Find(COLUMN2_NAME);
 
@@ -146,6 +155,7 @@ public class CustomizationUIManager : MonoBehaviour
         }
 
         fullTraits = playerTraits.Count >= numOfTraits;
+        UpdateTraitsCountUI();
 
         // Disable all other traits if limit is reached
         if (fullTraits)
