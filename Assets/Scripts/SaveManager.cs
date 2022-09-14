@@ -24,11 +24,14 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Initialize traits randomly
-    public static void InitializeTraits()
+    private void Start()
     {
         playerTraits = new int[numOfTraits];
-        
+    }
+
+    // Initialize traits randomly
+    public static void SelectRandomTraits()
+    {
         // Select traits
         for (int i = 0; i < numOfTraits; i++)
         {

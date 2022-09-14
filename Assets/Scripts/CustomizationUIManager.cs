@@ -1,30 +1,54 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using static Traits;
 using static SaveManager;
+using static Constants;
 
 public class CustomizationUIManager : MonoBehaviour
 {
     public TMP_InputField nameField;
     public TMP_InputField ageField;
     public GameObject traitDropdownObj;
+    public GameObject traitToggleObj;
     public Transform traitsTransform;
     public float traitsDropdownSpacing; // Spacing between traits dropdown boxes
+    public float traitsToggleSpacing;
     public Color warningColor;
 
     private TMP_Dropdown[] traitDropdowns;
-    private bool validPlayer = true;
-    private Color dropdownColor;
-    private Color dropdownTextColor;
+    private Toggle[] traitToggles;
 
     private void Start()
     {
         nameField.text = playerName;
         ageField.text = playerAge;
-        InitializeTraits();
-        PopulateTraitsDropdown();
-        dropdownColor = traitDropdowns[0].colors.normalColor;
-        dropdownTextColor = traitDropdowns[0].GetComponentInChildren<TMP_Text>().color;
+        PopulateTraitsToggles();
+    }
+
+    public void PopulateTraitsToggles()
+    {
+        Transform column1 = traitsTransform.Find(COLUMN1_NAME);
+        Transform column2 = traitsTransform.Find(COLUMN2_NAME);
+
+        traitToggles = new Toggle[traits.Count];
+
+        // Populate 
+        for (int i = 0; i < traits.Count / 2; i++)
+        {
+            GameObject obj = Instantiate(traitToggleObj,
+                new Vector2(column1.position.x, column1.position.y + traitsToggleSpacing * i),
+                Quaternion.identity,
+                column1);
+
+            GameObject obj2 = Instantiate(traitToggleObj,
+                new Vector2(column2.position.x, column2.position.y + traitsToggleSpacing * i),
+                Quaternion.identity,
+                column2);
+
+            obj.GetComponentInChildren<Text>().text = traits[i];
+            obj2.GetComponentInChildren<Text>().text = traits[i + traits.Count / 2];
+        }
     }
 
     // Populate dropdown with traits
@@ -60,6 +84,8 @@ public class CustomizationUIManager : MonoBehaviour
         int dropdownIndex = System.Array.IndexOf(traitDropdowns, dropdown);
         playerTraits[dropdownIndex] = dropdown.value;
 
+        Debug.Log("dropdown " + dropdownIndex + " was changed");
+
         for (int i = 0; i < traitDropdowns.Length; i++)
         {
             if (i == dropdownIndex)
@@ -69,13 +95,13 @@ public class CustomizationUIManager : MonoBehaviour
             {
                 Debug.Log("red");
                 dropdown.GetComponentInChildren<TMP_Text>().color = warningColor;
-                traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = warningColor;
+                //traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = warningColor;
             }
             else
             {
                 Debug.Log("fine");
-                dropdown.GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
-                traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
+                //dropdown.GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
+                //traitDropdowns[i].GetComponentInChildren<TMP_Text>().color = dropdownTextColor;
             }
         }
     }
