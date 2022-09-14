@@ -11,8 +11,6 @@ public class CustomizationUIManager : MonoBehaviour
     [Header("INFO")]
     public TMP_InputField nameField;
     public TMP_InputField ageField;
-    public TMP_Text portraitHeader;
-    public TMP_Text portraitTraits;
 
     [Header("TRAITS")]
     public GameObject traitDropdownObj;
@@ -23,12 +21,19 @@ public class CustomizationUIManager : MonoBehaviour
 
     [Header("COLORS")]
     public Color defaultTextColor;
+    public Color darkTextColor;
     public Color highlightedTextColor;
     public Color disabledTextColor;
+
+    [Header("UI Objects")]
+    public TMP_Text portraitHeader;
+    public TMP_Text portraitTraits;
+    public Button finishButton;
 
     private TMP_Dropdown[] partsDropdowns;
     private Toggle[] traitToggles;
     private bool fullTraits = false;
+    private Color disabledButtonTextColor;
 
     private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
@@ -42,6 +47,8 @@ public class CustomizationUIManager : MonoBehaviour
         // Set initial info
         nameField.text = playerName;
         ageField.text = playerAge;
+
+        disabledButtonTextColor = finishButton.GetComponentInChildren<TMP_Text>().color;
 
         UpdatePortraitTraits();
         PopulateTraitsToggles();
@@ -69,6 +76,7 @@ public class CustomizationUIManager : MonoBehaviour
     {
         playerName = nameField.text;
         playerAge = ageField.text;
+        SetButtonState();
     }
 
     // Populate Traits field with toggles
@@ -182,6 +190,7 @@ public class CustomizationUIManager : MonoBehaviour
         }
 
         UpdatePortraitTraits();
+        SetButtonState();
     }
 
     private void UpdatePortraitTraits()
@@ -192,6 +201,20 @@ public class CustomizationUIManager : MonoBehaviour
             portraitText += traits[i] + "\n";
 
         portraitTraits.text = portraitText;
+    }
+
+    private void SetButtonState()
+    {
+        if (PlayerIsValid())
+        {
+            finishButton.GetComponentInChildren<TMP_Text>().color = defaultTextColor;
+            finishButton.interactable = true;
+        }
+        else
+        {
+            finishButton.GetComponentInChildren<TMP_Text>().color = disabledButtonTextColor;
+            finishButton.interactable = false;
+        }
     }
 
     /*
