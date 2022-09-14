@@ -10,6 +10,7 @@ public class SaveManager : MonoBehaviour
     public static string playerName = "Quasimodo";
     public static string playerAge = "1000";
     public static List<int> playerTraits;
+    public static List<int> opposingTraits;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         playerTraits = new List<int>();
+        opposingTraits = new List<int>();
     }
 
     /*

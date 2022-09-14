@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,7 @@ public class CustomizationUIManager : MonoBehaviour
 
     private TMP_Dropdown[] traitDropdowns;
     private Toggle[] traitToggles;
+    private bool fullTraits = false;
 
     private void Start()
     {
@@ -94,23 +96,38 @@ public class CustomizationUIManager : MonoBehaviour
     public void OnClickTraitToggle(Toggle toggle)
     {
         int toggleIndex = System.Array.IndexOf(traitToggles, toggle);
+        int opposingTraitIndex = GetOppositeTraitIndex(toggleIndex);
 
         if (playerTraits.Count <= numOfTraits)
         {
             if (toggle.isOn)
             {
                 playerTraits.Add(toggleIndex);
-                traitToggles[GetOppositeTraitIndex(toggleIndex)].interactable = false;
+                opposingTraits.Add(opposingTraitIndex);
+                traitToggles[opposingTraitIndex].interactable = false;
             }
             else
             {
                 playerTraits.Remove(toggleIndex);
-                traitToggles[GetOppositeTraitIndex(toggleIndex)].interactable = true;
+                opposingTraits.Remove(opposingTraitIndex);
+                traitToggles[opposingTraitIndex].interactable = true;
+
+                // Reenable disabled toggles from when traits was last full
+                if (fullTraits)
+                {
+                    for (int i = 0; i < traitToggles.Length; i++)
+                    {
+                        if (!playerTraits.Contains(i) && !opposingTraits.Contains(i))
+                            traitToggles[i].interactable = true;
+                    }
+                }
             }
         }
 
+        fullTraits = playerTraits.Count >= numOfTraits;
+
         // Disable all other traits if limit is reached
-        if (playerTraits.Count >= numOfTraits)
+        if (fullTraits)
         {
             for (int i = 0; i < traitToggles.Length; i++)
             {
