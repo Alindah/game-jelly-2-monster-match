@@ -39,7 +39,7 @@ public class Traits : MonoBehaviour
     }
 
     // Select traits randomly
-    public static void SelectRandomTraits()
+    public static List<int> SelectRandomTraits()
     {
         List<int> traitsList = new List<int>();
 
@@ -59,5 +59,7 @@ public class Traits : MonoBehaviour
         // Random chance to choose an opposing trait instead
         for (int i = 0; i < numOfTraits; i++)
             traitsList[i] += (traits.Count / 2) * Random.Range(0, 2);
+
+        return traitsList;
     }
 }
