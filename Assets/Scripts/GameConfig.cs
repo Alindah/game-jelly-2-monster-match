@@ -1,4 +1,4 @@
 public class GameConfig
 {
-    public static int numOfTraits;
+    public static int numOfTraits = 3;
 }
