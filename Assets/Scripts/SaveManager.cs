@@ -9,6 +9,8 @@ public class SaveManager : MonoBehaviour
     public static string playerAge = "1000";
     public static List<int> playerTraits;
     public static List<int> opposingTraits;
+    public static List<Monster> matches;
+    public static List<Monster> rejections;
 
     private void Awake()
     {

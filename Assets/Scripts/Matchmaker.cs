@@ -4,9 +4,10 @@ using static Traits;
 
 public class Matchmaker : MonoBehaviour
 {
-    public float baseMatchChance = 50;
-    public float likeIncrease = 15;
-    public float dislikeDecrease = 15;
+    public int baseMatchChance = 50;
+    public int likeIncrease = 15;
+    public int dislikeDecrease = 15;
+
     private Monster suitor;
 
     public void Start()
@@ -19,6 +20,7 @@ public class Matchmaker : MonoBehaviour
         suitor = new Monster();
 
         Debug.Log(suitor.name + ", " + suitor.age);
+
         foreach (int i in suitor.traits)
         {
             Debug.Log(traits[i]);
@@ -29,7 +31,7 @@ public class Matchmaker : MonoBehaviour
 
     public void OnPressLike()
     {
-        Debug.Log("You liked this monster!");
+        DetermineMatch();
         GenerateNewSuitor();
     }
 
@@ -39,9 +41,9 @@ public class Matchmaker : MonoBehaviour
         GenerateNewSuitor();
     }
 
-    public void CalculateMatchChance()
+    private int CalculateMatchChance()
     {
-        float matchChance = baseMatchChance;
+        int matchChance = baseMatchChance;
 
         foreach (int traitIndex in suitor.traits)
         {
@@ -52,5 +54,23 @@ public class Matchmaker : MonoBehaviour
         }
 
         Debug.Log("you have a " + matchChance + "% chance of matching");
+        return matchChance;
+    }
+
+    private void DetermineMatch()
+    {
+        int chemistry = Random.Range(0, 101);
+
+        if (chemistry >= CalculateMatchChance())
+        {
+            Debug.Log("congrats, you matched!");
+            suitor.match = true;
+            matches.Add(suitor);
+        }
+        else
+        {
+            Debug.Log("they rejected your ugly ass");
+            rejections.Add(suitor);
+        }
     }
 }
