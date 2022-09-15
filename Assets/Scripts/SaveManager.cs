@@ -28,5 +28,7 @@ public class SaveManager : MonoBehaviour
         // Create lists
         playerTraits = new List<int>();
         opposingTraits = new List<int>();
+        matches = new List<Monster>();
+        rejections = new List<Monster>();
     }
 }

@@ -18,15 +18,6 @@ public class Matchmaker : MonoBehaviour
     public void GenerateNewSuitor()
     {
         suitor = new Monster();
-
-        Debug.Log(suitor.name + ", " + suitor.age);
-
-        foreach (int i in suitor.traits)
-        {
-            Debug.Log(traits[i]);
-        }
-
-        CalculateMatchChance();
     }
 
     public void OnPressLike()
@@ -61,7 +52,7 @@ public class Matchmaker : MonoBehaviour
     {
         int chemistry = Random.Range(0, 101);
 
-        if (chemistry >= CalculateMatchChance())
+        if (chemistry <= CalculateMatchChance())
         {
             Debug.Log("congrats, you matched!");
             suitor.match = true;
