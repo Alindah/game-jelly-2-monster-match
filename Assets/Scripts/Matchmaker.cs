@@ -1,12 +1,15 @@
 using UnityEngine;
 using static SaveManager;
 using static Traits;
+using static Constants;
 
 public class Matchmaker : MonoBehaviour
 {
     public int baseMatchChance = 50;
     public int likeIncrease = 15;
     public int dislikeDecrease = 15;
+    public int deckSize = 30;
+    public int swipesAvailable = 10;
 
     private Monster suitor;
 
@@ -24,12 +27,17 @@ public class Matchmaker : MonoBehaviour
     {
         DetermineMatch();
         GenerateNewSuitor();
+        swipesAvailable--;
+        deckSize--;
+        EndConditions();
     }
 
     public void OnPressDislike()
     {
         Debug.Log("You rejected this monster :(");
         GenerateNewSuitor();
+        deckSize--;
+        EndConditions();
     }
 
     private int CalculateMatchChance()
@@ -63,5 +71,11 @@ public class Matchmaker : MonoBehaviour
             Debug.Log("they rejected your ugly ass");
             rejections.Add(suitor);
         }
+    }
+
+    private void EndConditions()
+    {
+        if (swipesAvailable <= 0 || deckSize <= 0)
+            GameController.MoveToScene(CONCLUSION_SCENE);
     }
 }
