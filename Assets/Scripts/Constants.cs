@@ -5,4 +5,5 @@ public class Constants
     public static string CUSTOMIZATION_SCENE = "CustomizationScene";
     public static string APP_SCENE = "AppScene";
     public static string CONCLUSION_SCENE = "ConclusionScene";
+    public static string PARTS_PATH = "./Assets/Images/Monster Parts";
 }

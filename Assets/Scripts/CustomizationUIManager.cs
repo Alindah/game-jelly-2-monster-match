@@ -5,6 +5,7 @@ using static Traits;
 using static GameConfig;
 using static SaveManager;
 using static Constants;
+using System.IO;
 
 public class CustomizationUIManager : MonoBehaviour
 {
@@ -13,11 +14,14 @@ public class CustomizationUIManager : MonoBehaviour
     public TMP_InputField ageField;
 
     [Header("TRAITS")]
-    public GameObject traitDropdownObj;
     public GameObject traitToggleObj;
     public Transform traitsTransform;
-    public float traitsDropdownSpacing; // Spacing between traits dropdown boxes
     public float traitsToggleSpacing;
+
+    [Header("PARTS")]
+    public GameObject partsDropdownObj;
+    public Transform appearanceTransform;
+    public float partsDropdownSpacing;
 
     [Header("COLORS")]
     public Color defaultTextColor;
@@ -52,6 +56,7 @@ public class CustomizationUIManager : MonoBehaviour
 
         UpdatePortraitTraits();
         PopulateTraitsToggles();
+        PopulatePartsDropdown();
     }
 
     // Make sure player is valid before allowing user to continue
@@ -217,25 +222,28 @@ public class CustomizationUIManager : MonoBehaviour
         }
     }
 
-    /*
     // Populate dropdown with body parts
     public void PopulatePartsDropdown()
     {
-        traitDropdowns = new partsDropdowns[3];
+        partsDropdowns = new TMP_Dropdown[3];
+        string[] partsCategory = Directory.GetDirectories(PARTS_PATH);
 
         // Create new dropdown objects depending on number of traits indicated
-        for (int i = 0; i < GameConfig.numOfTraits; i++)
+        for (int i = 0; i < partsCategory.Length; i++)
         {
-            GameObject obj = Instantiate(traitDropdownObj,
-                new Vector2(traitsTransform.position.x, traitsTransform.position.y + traitsDropdownSpacing * i),
+            GameObject obj = Instantiate(partsDropdownObj,
+                new Vector2(appearanceTransform.position.x, appearanceTransform.position.y + partsDropdownSpacing * i),
                 Quaternion.identity,
-                traitsTransform);
+                appearanceTransform);
 
-            traitDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
-            traitDropdowns[i].AddOptions(traits);
-            traitDropdowns[i].value = playerTraits[i];
+            obj.transform.GetComponentInChildren<TMP_Text>().text = partsCategory[i];
+
+            partsDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
+
+            //partsDropdowns[i].AddOptions(traits);
+            //partsDropdowns[i].value = playerTraits[i];
         }
-    }*/
+    }
 
     public void FinalizePlayer()
     {
