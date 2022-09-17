@@ -5,7 +5,7 @@ public class Monster
     public string name;
     public string age;
     public List<int> traits = new List<int>();
-    public bool match;
+    public float compatibility;
 
     // Monster constructor
     public Monster()
@@ -13,6 +13,6 @@ public class Monster
         name = "Lonely Monster";
         age = "100";
         traits = Traits.SelectRandomTraits();
-        match = false;
+        compatibility = 0;
     }
 }

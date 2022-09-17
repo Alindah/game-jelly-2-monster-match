@@ -59,11 +59,11 @@ public class Matchmaker : MonoBehaviour
     private void DetermineMatch()
     {
         int chemistry = Random.Range(0, 101);
+        suitor.compatibility = CalculateMatchChance();
 
-        if (chemistry <= CalculateMatchChance())
+        if (chemistry <= suitor.compatibility)
         {
             Debug.Log("congrats, you matched!");
-            suitor.match = true;
             matches.Add(suitor);
         }
         else
