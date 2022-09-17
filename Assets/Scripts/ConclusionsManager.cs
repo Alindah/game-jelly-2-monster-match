@@ -48,5 +48,6 @@ public class ConclusionsManager : MonoBehaviour
 
     private void SpotlightMonster(Monster monster)
     {
+        FillCard.FillInfo(monster);
     }
 }
