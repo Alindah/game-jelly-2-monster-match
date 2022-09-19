@@ -7,6 +7,7 @@ public class ConclusionsManager : MonoBehaviour
 {
     public TMP_Text matchesHeader;
     public TMP_Text rejectionsHeader;
+    public GameObject trueLoveGameObj;
 
     [Header("Spotlight")]
     public GameObject spotlight;
@@ -28,11 +29,16 @@ public class ConclusionsManager : MonoBehaviour
         DisplayMonsters(player.rejections);
 
         // If player rejected all monsters, display player in  spotlight
+        // otherwise, spotlight first monster
         if (player.matches.Count == 0 && player.rejections.Count == 0)
+        {
             SpotlightMonster(player);
-
-        // Spotlight first monster
-        SpotlightMonster(allMonsters[0]);
+            trueLoveGameObj.SetActive(true);
+        }
+        else
+        {
+            SpotlightMonster(allMonsters[0]);
+        }
     }
 
     private void DisplayMonsters(List<Monster> monsters)

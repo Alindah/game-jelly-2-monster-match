@@ -21,6 +21,7 @@ public class SaveManager : MonoBehaviour
             name = DEFAULT_PLAYER_NAME;
             age = DEFAULT_PLAYER_AGE;
             traits = new List<int>();
+            compatibility = 100;
             opposingTraits = new List<int>();
             matches = new List<Monster>();
             rejections = new List<Monster>();
