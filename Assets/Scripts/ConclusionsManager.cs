@@ -16,20 +16,20 @@ public class ConclusionsManager : MonoBehaviour
     private void Start()
     {
         // Create a list of all monsters, both matched and rejected
-        allMonsters = new List<Monster>(matches);
-        allMonsters.InsertRange(matches.Count, rejections);
+        allMonsters = new List<Monster>(player.matches);
+        allMonsters.InsertRange(player.matches.Count, player.rejections);
 
         // Display number of matches and rejections
-        matchesHeader.text = string.Format(matchesHeader.text, matches.Count);
-        rejectionsHeader.text = string.Format(rejectionsHeader.text, rejections.Count);
+        matchesHeader.text = string.Format(matchesHeader.text, player.matches.Count);
+        rejectionsHeader.text = string.Format(rejectionsHeader.text, player.rejections.Count);
 
         // Display monster cards
-        DisplayMonsters(matches);
-        DisplayMonsters(rejections);
+        DisplayMonsters(player.matches);
+        DisplayMonsters(player.rejections);
 
         // If player rejected all monsters, display player in  spotlight
-        //if (matches.Count == 0 && rejections.Count == 0)
-        //    SpotlightMonster(player)
+        if (player.matches.Count == 0 && player.rejections.Count == 0)
+            SpotlightMonster(player);
 
         // Spotlight first monster
         SpotlightMonster(allMonsters[0]);

@@ -46,9 +46,9 @@ public class Matchmaker : MonoBehaviour
 
         foreach (int traitIndex in suitor.traits)
         {
-            if (playerTraits.Contains(traitIndex))
+            if (player.traits.Contains(traitIndex))
                 matchChance += likeIncrease;
-            else if (opposingTraits.Contains(traitIndex))
+            else if (player.opposingTraits.Contains(traitIndex))
                 matchChance -= dislikeDecrease;
         }
 
@@ -64,12 +64,12 @@ public class Matchmaker : MonoBehaviour
         if (chemistry <= suitor.compatibility)
         {
             Debug.Log("congrats, you matched!");
-            matches.Add(suitor);
+            player.matches.Add(suitor);
         }
         else
         {
             Debug.Log("they rejected your ugly ass");
-            rejections.Add(suitor);
+            player.rejections.Add(suitor);
         }
     }
 

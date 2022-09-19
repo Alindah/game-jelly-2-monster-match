@@ -49,8 +49,8 @@ public class CustomizationUIManager : MonoBehaviour
         PORTRAIT_HEADER_TEXT = portraitHeader.text;
 
         // Set initial info
-        nameField.text = playerName;
-        ageField.text = playerAge;
+        nameField.text = player.name;
+        ageField.text = player.age;
 
         disabledButtonTextColor = finishButton.GetComponentInChildren<TMP_Text>().color;
 
@@ -62,12 +62,12 @@ public class CustomizationUIManager : MonoBehaviour
     // Make sure player is valid before allowing user to continue
     public bool PlayerIsValid()
     {
-        return playerName != "" && playerAge != "" && fullTraits; 
+        return player.name != "" && player.age != "" && fullTraits; 
     }
 
     public void UpdateTraitsCountUI()
     {
-        traitsTransform.GetComponentInChildren<TMP_Text>().text = string.Format(TRAITS_UI_TEXT, playerTraits.Count, numOfTraits);
+        traitsTransform.GetComponentInChildren<TMP_Text>().text = string.Format(TRAITS_UI_TEXT, player.traits.Count, numOfTraits);
     }
 
     // Update name on portrait as player types in name
@@ -79,8 +79,8 @@ public class CustomizationUIManager : MonoBehaviour
     // Save player info
     public void SaveInfo()
     {
-        playerName = nameField.text;
-        playerAge = ageField.text;
+        player.name = nameField.text;
+        player.age = ageField.text;
         SetButtonState();
     }
 
@@ -134,14 +134,14 @@ public class CustomizationUIManager : MonoBehaviour
         int toggleIndex = System.Array.IndexOf(traitToggles, toggle);
         int opposingTraitIndex = GetOppositeTraitIndex(toggleIndex);
 
-        if (playerTraits.Count <= numOfTraits)
+        if (player.traits.Count <= numOfTraits)
         {
             // Determine what happens when clicked
             if (toggle.isOn)
             {
                 // Add traits to respective lists
-                playerTraits.Add(toggleIndex);
-                opposingTraits.Add(opposingTraitIndex);
+                player.traits.Add(toggleIndex);
+                player.opposingTraits.Add(opposingTraitIndex);
 
                 // Disable opposing trait's toggle
                 traitToggles[opposingTraitIndex].interactable = false;
@@ -153,8 +153,8 @@ public class CustomizationUIManager : MonoBehaviour
             else
             {
                 // Remove traits from respective lists
-                playerTraits.Remove(toggleIndex);
-                opposingTraits.Remove(opposingTraitIndex);
+                player.traits.Remove(toggleIndex);
+                player.opposingTraits.Remove(opposingTraitIndex);
 
                 // Reenable opposing trait's toggle
                 traitToggles[opposingTraitIndex].interactable = true;
@@ -168,7 +168,7 @@ public class CustomizationUIManager : MonoBehaviour
                 {
                     for (int i = 0; i < traitToggles.Length; i++)
                     {
-                        if (!playerTraits.Contains(i) && !opposingTraits.Contains(i))
+                        if (!player.traits.Contains(i) && !player.opposingTraits.Contains(i))
                         {
                             traitToggles[i].interactable = true;
                             traitToggles[i].GetComponentInChildren<Text>().color = defaultTextColor;
@@ -178,7 +178,7 @@ public class CustomizationUIManager : MonoBehaviour
             }
         }
 
-        fullTraits = playerTraits.Count >= numOfTraits;
+        fullTraits = player.traits.Count >= numOfTraits;
         UpdateTraitsCountUI();
 
         // Disable all other traits if limit is reached
@@ -186,7 +186,7 @@ public class CustomizationUIManager : MonoBehaviour
         {
             for (int i = 0; i < traitToggles.Length; i++)
             {
-                if (!playerTraits.Contains(i))
+                if (!player.traits.Contains(i))
                 {
                     traitToggles[i].interactable = false;
                     traitToggles[i].GetComponentInChildren<Text>().color = disabledTextColor;
@@ -202,7 +202,7 @@ public class CustomizationUIManager : MonoBehaviour
     {
         string portraitText = "";
 
-        foreach (int i in playerTraits)
+        foreach (int i in player.traits)
             portraitText += traits[i] + "\n";
 
         portraitTraits.text = portraitText;
@@ -241,7 +241,7 @@ public class CustomizationUIManager : MonoBehaviour
             partsDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
 
             //partsDropdowns[i].AddOptions(traits);
-            //partsDropdowns[i].value = playerTraits[i];
+            //partsDropdowns[i].value = player.traits[i];
         }
     }
 
