@@ -7,18 +7,16 @@ public class ConclusionsManager : MonoBehaviour
 {
     public TMP_Text matchesHeader;
     public TMP_Text rejectionsHeader;
-    public TMP_Text compatibilityHeader;
 
     [Header("Spotlight")]
-    public TMP_Text infoHeader;
-    public TMP_Text traitsList;
+    public GameObject spotlight;
 
     private List<Monster> allMonsters;
 
     private void Start()
     {
         // Create a list of all monsters, both matched and rejected
-        allMonsters = matches;
+        allMonsters = new List<Monster>(matches);
         allMonsters.InsertRange(matches.Count, rejections);
 
         // Display number of matches and rejections
@@ -48,6 +46,6 @@ public class ConclusionsManager : MonoBehaviour
 
     private void SpotlightMonster(Monster monster)
     {
-        FillCard.FillInfo(monster);
+        spotlight.GetComponent<FillCard>().FillInfo(monster, true);
     }
 }

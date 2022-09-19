@@ -750,7 +750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Compatibility: {0}'
+  m_text: 'Compatibility: {0}%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3f8ea3ddb70e47638faee8170658677, type: 2}
   m_sharedMaterial: {fileID: -5930128990720996172, guid: c3f8ea3ddb70e47638faee8170658677, type: 2}
