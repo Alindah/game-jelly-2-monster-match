@@ -1,3 +1,5 @@
+using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -5,7 +7,6 @@ using static Traits;
 using static GameConfig;
 using static SaveManager;
 using static Constants;
-using System.IO;
 
 public class CustomizationUIManager : MonoBehaviour
 {
@@ -226,7 +227,15 @@ public class CustomizationUIManager : MonoBehaviour
     public void PopulatePartsDropdown()
     {
         partsDropdowns = new TMP_Dropdown[3];
-        string[] partsCategory = Directory.GetDirectories(PARTS_PATH);
+        string[] partsPaths = Directory.GetDirectories(PARTS_PATH);
+        string[] partsCategory = new string[partsPaths.Length];
+
+        // Get category names
+        for (int i = 0; i < partsCategory.Length; i++)
+        {
+            Regex regex = new Regex(PARTS_PATH + '/');
+            partsCategory[i] = regex.Replace(partsPaths[i], "");
+        }
 
         // Create new dropdown objects depending on number of traits indicated
         for (int i = 0; i < partsCategory.Length; i++)
