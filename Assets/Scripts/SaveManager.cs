@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
         InitializePlayer();
     }
 
-    private void InitializePlayer()
+    public static void InitializePlayer()
     {
         player = new Player();
     }
