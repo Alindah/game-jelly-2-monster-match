@@ -51,6 +51,7 @@ public class MonsterParts : MonoBehaviour
         monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], transforms[categoryIndex]);
     }
 
+    // Randomize body parts
     public static GameObject[] RandomizeParts()
     {
         GameObject[] parts = new GameObject[numOfPartsCategories];
@@ -61,6 +62,7 @@ public class MonsterParts : MonoBehaviour
         return parts;
     }
 
+    // Randomize base color
     public static Color RandomizeBaseColor()
     {
         float randomRed = Random.Range(0, 1.0f);

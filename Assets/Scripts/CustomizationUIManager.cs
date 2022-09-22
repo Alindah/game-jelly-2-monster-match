@@ -267,6 +267,8 @@ public class CustomizationUIManager : MonoBehaviour
 
             partsNames.Add(NONE_TEXT);  // Add 'None' option for no part
             partsDropdowns[i].AddOptions(partsNames);   // Add parts names to list
+            partsDropdowns[i].value = System.Array.IndexOf(MonsterParts.partsList[i], player.bodyParts[i]); // Set initial values of dropdown
+            monsterParts.SetBodyPart(i, partsDropdowns[i].value, player);   // Instantiate body parts on card
         }
     }
 

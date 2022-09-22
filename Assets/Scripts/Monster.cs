@@ -20,7 +20,7 @@ public class Monster
         traits = Traits.SelectRandomTraits();
         compatibility = 0;
 
-        bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
+        //bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
         baseColor = MonsterParts.RandomizeBaseColor();
     }
 }
