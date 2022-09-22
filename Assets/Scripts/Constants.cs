@@ -6,6 +6,8 @@ public class Constants
     public static string APP_SCENE = "AppScene";
     public static string CONCLUSION_SCENE = "ConclusionScene";
     public static string PARTS_PATH = "./Assets/Images/Monster Parts";
+    public static string PARTS_PREFABS_PATH = "./Assets/Resources/Prefabs/Parts";
+    public static string PARTS_PREFABS_PATH_SHORT = "Prefabs/Parts/";
     public static string MONSTER_INFO = "MonsterInfo";
     public static string TRAITS_INFO = "TraitsInfo";
     public static string COMPATIBILITY_INFO = "CompatibilityInfo";

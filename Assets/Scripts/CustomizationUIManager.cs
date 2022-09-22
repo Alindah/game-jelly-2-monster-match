@@ -43,11 +43,12 @@ public class CustomizationUIManager : MonoBehaviour
     public TMP_Text portraitTraits;
     public Button finishButton;
 
-    private TMP_Dropdown[] partsDropdowns;
+    private List<TMP_Dropdown> partsDropdowns;
     private Toggle[] traitToggles;
     private bool fullTraits = false;
     private Color disabledButtonTextColor;
     private SpriteRenderer[] baseParts;
+    private List<string> partsFolderNames;
 
     private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
@@ -239,15 +240,21 @@ public class CustomizationUIManager : MonoBehaviour
     // Populate dropdown with body parts
     public void PopulatePartsDropdown()
     {
-        partsDropdowns = new TMP_Dropdown[3];
+        partsDropdowns = new List<TMP_Dropdown>();
+        partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
         string[] partsDir = Directory.GetDirectories(PARTS_PATH);
         string[] partsCategory = new string[partsDir.Length];
 
         // Get category names
         for (int i = 0; i < partsCategory.Length; i++)
         {
+            // Get category labels
             Regex regex = new Regex(PARTS_PATH + '/');
             partsCategory[i] = regex.Replace(partsDir[i], "");
+
+            // Get category folder names
+            regex = new Regex(Path.GetDirectoryName(partsFolderNames[i]) + '/');
+            partsFolderNames[i] = PARTS_PREFABS_PATH_SHORT + regex.Replace(partsFolderNames[i], "");
         }
 
         // Create new dropdown objects depending on number of traits indicated
@@ -261,7 +268,7 @@ public class CustomizationUIManager : MonoBehaviour
             obj.transform.GetComponentInChildren<TMP_Text>().text = partsCategory[i];
 
             // Populate dropdown with parts
-            partsDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
+            partsDropdowns.Add(obj.GetComponent<TMP_Dropdown>());
             List<string> partsPath = new List<string>(Directory.GetFiles(partsDir[i], "*" + FILE_TYPE));
             List<string> partsNames = new List<string>();
 
@@ -276,25 +283,42 @@ public class CustomizationUIManager : MonoBehaviour
         }
     }
 
+    // Fill parts prefab arrays
+    private GameObject[] InitializePartsPrefabs(string dirName)
+    {
+        return Resources.LoadAll<GameObject>(dirName);
+    }
+
+    // Initialize each parts category
     private void InitializeParts()
     {
+        // Eyes
         partsDropdowns[0].onValueChanged.AddListener(delegate
         {
             SetEyes(partsDropdowns[0].value);
         });
 
+        monsterParts.eyes = InitializePartsPrefabs(partsFolderNames[0]);
+
+        // Head Decor
         partsDropdowns[1].onValueChanged.AddListener(delegate
         {
-            SetEyes(partsDropdowns[1].value);
+            SetHeadDecor(partsDropdowns[1].value);
         });
 
+        monsterParts.headDecor = InitializePartsPrefabs(partsFolderNames[1]);
+        Debug.Log(partsFolderNames[1]);
+
+        // Mouth
         partsDropdowns[2].onValueChanged.AddListener(delegate
         {
-            SetEyes(partsDropdowns[2].value);
+            SetMouth(partsDropdowns[2].value);
         });
+
+        monsterParts.mouths = InitializePartsPrefabs(partsFolderNames[2]);
     }
 
-    public void SetEyes(int i, bool none = false)
+    public void SetEyes(int i)
     {
         if (player.eyes != null)
             Destroy(player.eyes);
