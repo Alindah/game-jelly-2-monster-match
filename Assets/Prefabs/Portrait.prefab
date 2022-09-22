@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2730151833672749779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4545558079578654160}
+  m_Layer: 0
+  m_Name: MonsterPortrait
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4545558079578654160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730151833672749779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1157484104738334551}
+  m_Father: {fileID: 3298162097598798080}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3298162097468302230
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3298162097598798080}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3298162097468302232
 SpriteRenderer:
@@ -70,9 +102,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingLayerID: -510202587
+  m_SortingLayer: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.12156863, g: 0.09803922, b: 0.16862746, a: 1}
   m_FlipX: 0
@@ -116,6 +148,7 @@ Transform:
   - {fileID: 1058061713009106862}
   - {fileID: 3298162099067207844}
   - {fileID: 3298162097929166295}
+  - {fileID: 4545558079578654160}
   - {fileID: 3298162097468302231}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -142,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3298162097929166295}
   - component: {fileID: 3298162097929166296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InfoBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +261,7 @@ GameObject:
   - component: {fileID: 3298162098789101808}
   - component: {fileID: 3298162098789101810}
   - component: {fileID: 3298162098789101809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TraitsInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3298162099067207844}
   - component: {fileID: 3298162099067207845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HeaderBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +522,7 @@ GameObject:
   - component: {fileID: 3298162099178772853}
   - component: {fileID: 3298162099178772855}
   - component: {fileID: 3298162099178772854}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,3 +855,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8501702614180388849}
   m_maskType: 0
+--- !u!1 &9015898897302451645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157484104738334551}
+  m_Layer: 0
+  m_Name: Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1157484104738334551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015898897302451645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4545558079578654160}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

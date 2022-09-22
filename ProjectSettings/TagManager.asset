@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PortraitText
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Card Backdrop
+    uniqueID: 3784764709
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Card
+    uniqueID: 2898038059
     locked: 0
