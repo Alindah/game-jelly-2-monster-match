@@ -491,11 +491,11 @@ RectTransform:
   m_Father: {fileID: 1468356926}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -72}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -72}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &853327062
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +868,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7814343856372129733, guid: c160dfb1912d04b44818ee1947faff1e, type: 3}
   m_PrefabInstance: {fileID: 1531955752}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1634774467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1634774468}
+  m_Layer: 0
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1634774468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634774467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3298162098025721729}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1920715172 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9037435740948986774, guid: 4593b48ce5ca84cf19f0c59ab714ee37, type: 3}
@@ -907,6 +938,7 @@ GameObject:
   - component: {fileID: 2043193759}
   - component: {fileID: 2043193761}
   - component: {fileID: 2043193762}
+  - component: {fileID: 2043193763}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -984,6 +1016,23 @@ MonoBehaviour:
   portraitHeader: {fileID: 1162868470}
   portraitTraits: {fileID: 2105663345}
   finishButton: {fileID: 2035393988}
+--- !u!114 &2043193763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043193758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f855f876e02ab4ab5ab85777b8ee27dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyes:
+  - {fileID: 6027929856836115427, guid: ad7a0e9d9348f4fc8a0b7080aa07d47c, type: 3}
+  - {fileID: 3852228951606136829, guid: de106d5da17a54dffa264b3741541c19, type: 3}
+  - {fileID: 6005481068862290216, guid: 3bab4f334a67f476d94b2fc2cac803ed, type: 3}
+  eyesTransform: {fileID: 1634774468}
 --- !u!1001 &2050777968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1386,6 +1435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321a194251a9c470686e84263d849b81, type: 3}
+--- !u!4 &3298162098025721729 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4545558079578654160, guid: 321a194251a9c470686e84263d849b81, type: 3}
+  m_PrefabInstance: {fileID: 3298162098025721728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3768531234838977979
 PrefabInstance:
   m_ObjectHideFlags: 0

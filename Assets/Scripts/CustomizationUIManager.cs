@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -49,6 +50,7 @@ public class CustomizationUIManager : MonoBehaviour
 
     private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
+    private string FILE_TYPE = ".png";
 
     private void Start()
     {
@@ -236,14 +238,14 @@ public class CustomizationUIManager : MonoBehaviour
     public void PopulatePartsDropdown()
     {
         partsDropdowns = new TMP_Dropdown[3];
-        string[] partsPaths = Directory.GetDirectories(PARTS_PATH);
-        string[] partsCategory = new string[partsPaths.Length];
+        string[] partsDir = Directory.GetDirectories(PARTS_PATH);
+        string[] partsCategory = new string[partsDir.Length];
 
         // Get category names
         for (int i = 0; i < partsCategory.Length; i++)
         {
             Regex regex = new Regex(PARTS_PATH + '/');
-            partsCategory[i] = regex.Replace(partsPaths[i], "");
+            partsCategory[i] = regex.Replace(partsDir[i], "");
         }
 
         // Create new dropdown objects depending on number of traits indicated
@@ -256,9 +258,18 @@ public class CustomizationUIManager : MonoBehaviour
 
             obj.transform.GetComponentInChildren<TMP_Text>().text = partsCategory[i];
 
+            // Populate dropdown with parts
             partsDropdowns[i] = obj.GetComponent<TMP_Dropdown>();
+            List<string> partsPath = new List<string>(Directory.GetFiles(partsDir[i], "*" + FILE_TYPE));
+            List<string> partsNames = new List<string>();
 
-            //partsDropdowns[i].AddOptions(traits);
+            foreach (string str in partsPath)
+            {
+                Regex regex = new Regex(partsDir[i] + '/');
+                partsNames.Add(regex.Replace(str, "").Replace(FILE_TYPE, ""));
+            }
+
+            partsDropdowns[i].AddOptions(partsNames);
             //partsDropdowns[i].value = player.traits[i];
         }
     }
