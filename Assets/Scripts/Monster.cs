@@ -15,12 +15,14 @@ public class Monster
     // Monster constructor
     public Monster()
     {
+        // Info
         name = "Lonely Monster";
         age = "100";
         traits = Traits.SelectRandomTraits();
         compatibility = 0;
 
-        //bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
+        // Appearance
         baseColor = MonsterParts.RandomizeBaseColor();
+        bodyParts = MonsterParts.RandomizeParts();
     }
 }
