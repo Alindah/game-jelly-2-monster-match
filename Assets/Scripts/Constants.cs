@@ -9,4 +9,5 @@ public class Constants
     public static string MONSTER_INFO = "MonsterInfo";
     public static string TRAITS_INFO = "TraitsInfo";
     public static string COMPATIBILITY_INFO = "CompatibilityInfo";
+    public static string NONE_TEXT = "None";
 }

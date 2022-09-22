@@ -10,6 +10,9 @@ public class Monster
 
     // Appearance
     public Color baseColor;
+    public GameObject eyes;
+    public GameObject headDecor;
+    public GameObject mouth;
 
     // Monster constructor
     public Monster()

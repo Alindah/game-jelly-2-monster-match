@@ -1002,6 +1002,7 @@ MonoBehaviour:
   traitToggleObj: {fileID: 8430647918001070440, guid: 5921364d61198482fb211720b6600ba4, type: 3}
   traitsTransform: {fileID: 2050777969}
   traitsToggleSpacing: -32
+  monsterParts: {fileID: 2043193763}
   partsDropdownObj: {fileID: 3817954596123822598, guid: 6f353b22f529d438498a54b3d26a6b2b, type: 3}
   appearanceTransform: {fileID: 829739564}
   baseTransform: {fileID: 342422958}
@@ -1033,6 +1034,8 @@ MonoBehaviour:
   - {fileID: 3852228951606136829, guid: de106d5da17a54dffa264b3741541c19, type: 3}
   - {fileID: 6005481068862290216, guid: 3bab4f334a67f476d94b2fc2cac803ed, type: 3}
   eyesTransform: {fileID: 1634774468}
+  headDecor: []
+  headDecorTransform: {fileID: 0}
 --- !u!1001 &2050777968
 PrefabInstance:
   m_ObjectHideFlags: 0

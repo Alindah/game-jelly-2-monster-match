@@ -21,6 +21,7 @@ public class CustomizationUIManager : MonoBehaviour
     public float traitsToggleSpacing;
 
     [Header("PARTS")]
+    public MonsterParts monsterParts;
     public GameObject partsDropdownObj;
     public Transform appearanceTransform;
     public Transform baseTransform;
@@ -67,6 +68,7 @@ public class CustomizationUIManager : MonoBehaviour
         UpdatePortraitTraits();
         PopulateTraitsToggles();
         PopulatePartsDropdown();
+        InitializeParts();
         SetInitialColorSlider(RandomizeBaseColor());
         SetBaseColor();
     }
@@ -269,9 +271,60 @@ public class CustomizationUIManager : MonoBehaviour
                 partsNames.Add(regex.Replace(str, "").Replace(FILE_TYPE, ""));
             }
 
+            partsNames.Add(NONE_TEXT);  // Option for no part
             partsDropdowns[i].AddOptions(partsNames);
-            //partsDropdowns[i].value = player.traits[i];
         }
+    }
+
+    private void InitializeParts()
+    {
+        partsDropdowns[0].onValueChanged.AddListener(delegate
+        {
+            SetEyes(partsDropdowns[0].value);
+        });
+
+        partsDropdowns[1].onValueChanged.AddListener(delegate
+        {
+            SetEyes(partsDropdowns[1].value);
+        });
+
+        partsDropdowns[2].onValueChanged.AddListener(delegate
+        {
+            SetEyes(partsDropdowns[2].value);
+        });
+    }
+
+    public void SetEyes(int i, bool none = false)
+    {
+        if (player.eyes != null)
+            Destroy(player.eyes);
+
+        if (i >= monsterParts.eyes.Length)
+            return;
+
+        player.eyes = Instantiate(monsterParts.eyes[i], monsterParts.eyesTransform);
+    }
+
+    public void SetHeadDecor(int i)
+    {
+        if (player.headDecor != null)
+            Destroy(player.headDecor);
+
+        if (i >= monsterParts.headDecor.Length)
+            return;
+
+        player.headDecor = Instantiate(monsterParts.headDecor[i], monsterParts.headDecorTransform);
+    }
+
+    public void SetMouth(int i)
+    {
+        if (player.mouth != null)
+            Destroy(player.mouth);
+
+        if (i >= monsterParts.mouths.Length)
+            return;
+
+        player.mouth = Instantiate(monsterParts.mouths[i], monsterParts.mouthTransform);
     }
 
     private Color RandomizeBaseColor()
