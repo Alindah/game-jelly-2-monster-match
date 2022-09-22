@@ -21,5 +21,6 @@ public class Monster
         compatibility = 0;
 
         bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
+        baseColor = MonsterParts.RandomizeBaseColor();
     }
 }

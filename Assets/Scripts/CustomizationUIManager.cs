@@ -69,7 +69,7 @@ public class CustomizationUIManager : MonoBehaviour
         PopulateTraitsToggles();
         PopulatePartsDropdown();
         InitializeParts();
-        SetInitialColorSlider(RandomizeBaseColor());
+        SetInitialColorSlider(player.baseColor);
         SetBaseColor();
     }
 
@@ -286,15 +286,6 @@ public class CustomizationUIManager : MonoBehaviour
     {
         int categoryIndex = partsDropdowns.IndexOf(dd);
         monsterParts.SetBodyPart(categoryIndex, partsDropdowns[categoryIndex].value, player);
-    }
-
-    private Color RandomizeBaseColor()
-    {
-        float randomRed = Random.Range(0, 1.0f);
-        float randomGreen = Random.Range(0, 1.0f);
-        float randomBlue = Random.Range(0, 1.0f);
-
-        return new Color(randomRed, randomGreen, randomBlue, 1);
     }
 
     private void SetInitialColorSlider(Color color)

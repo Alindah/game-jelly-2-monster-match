@@ -9,14 +9,15 @@ public class MonsterParts : MonoBehaviour
     public static string[] partsDir = Directory.GetDirectories(PARTS_PATH);
     public static int numOfPartsCategories = partsDir.Length;
     public static string[] partsCategoryNames = new string[numOfPartsCategories];
+    public static List<GameObject[]> partsList = new List<GameObject[]>();
 
     public Transform[] transforms;
-    public List<GameObject[]> partsList = new List<GameObject[]>();
 
     private List<string> partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
 
     private void Awake()
     {
+        // Initial parts data
         for (int i = 0; i < numOfPartsCategories; i++)
         {
             // Get category labels
@@ -48,5 +49,24 @@ public class MonsterParts : MonoBehaviour
             return;
 
         monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], transforms[categoryIndex]);
+    }
+
+    public static GameObject[] RandomizeParts()
+    {
+        GameObject[] parts = new GameObject[numOfPartsCategories];
+
+        for (int i = 0; i < numOfPartsCategories; i++)
+            parts[i] = partsList[i][Random.Range(0, partsList[i].Length)];
+
+        return parts;
+    }
+
+    public static Color RandomizeBaseColor()
+    {
+        float randomRed = Random.Range(0, 1.0f);
+        float randomGreen = Random.Range(0, 1.0f);
+        float randomBlue = Random.Range(0, 1.0f);
+
+        return new Color(randomRed, randomGreen, randomBlue, 1);
     }
 }
