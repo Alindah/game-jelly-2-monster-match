@@ -48,7 +48,6 @@ public class CustomizationUIManager : MonoBehaviour
     private bool fullTraits = false;
     private Color disabledButtonTextColor;
     private SpriteRenderer[] baseParts;
-    private List<string> partsFolderNames;
 
     private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
@@ -241,91 +240,52 @@ public class CustomizationUIManager : MonoBehaviour
     public void PopulatePartsDropdown()
     {
         partsDropdowns = new List<TMP_Dropdown>();
-        partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
-        string[] partsDir = Directory.GetDirectories(PARTS_PATH);
-        string[] partsCategory = new string[partsDir.Length];
-
-        // Get category names
-        for (int i = 0; i < partsCategory.Length; i++)
-        {
-            // Get category labels
-            Regex regex = new Regex(PARTS_PATH + '/');
-            partsCategory[i] = regex.Replace(partsDir[i], "");
-
-            // Get category folder names
-            regex = new Regex(Path.GetDirectoryName(partsFolderNames[i]) + '/');
-            partsFolderNames[i] = PARTS_PREFABS_PATH_SHORT + regex.Replace(partsFolderNames[i], "");
-        }
 
         // Create new dropdown objects depending on number of traits indicated
-        for (int i = 0; i < partsCategory.Length; i++)
+        for (int i = 0; i < MonsterParts.numOfPartsCategories; i++)
         {
+            // Instantiate dropdown object
             GameObject obj = Instantiate(partsDropdownObj,
                 new Vector2(appearanceTransform.position.x, appearanceTransform.position.y + partsDropdownSpacing * i),
                 Quaternion.identity,
                 appearanceTransform);
 
-            obj.transform.GetComponentInChildren<TMP_Text>().text = partsCategory[i];
+            // Set category label
+            obj.transform.GetComponentInChildren<TMP_Text>().text = MonsterParts.partsCategoryNames[i];
 
             // Populate dropdown with parts
             partsDropdowns.Add(obj.GetComponent<TMP_Dropdown>());
-            List<string> partsPath = new List<string>(Directory.GetFiles(partsDir[i], "*" + FILE_TYPE));
+            List<string> partsPath = new List<string>(Directory.GetFiles(MonsterParts.partsDir[i], "*" + FILE_TYPE));
             List<string> partsNames = new List<string>();
 
+            // Format part names for dropdown
             foreach (string str in partsPath)
             {
-                Regex regex = new Regex(partsDir[i] + '/');
+                Regex regex = new Regex(MonsterParts.partsDir[i] + '/');
                 partsNames.Add(regex.Replace(str, "").Replace(FILE_TYPE, ""));
             }
 
-            partsNames.Add(NONE_TEXT);  // Option for no part
-            partsDropdowns[i].AddOptions(partsNames);
+            partsNames.Add(NONE_TEXT);  // Add 'None' option for no part
+            partsDropdowns[i].AddOptions(partsNames);   // Add parts names to list
         }
-    }
-
-    // Fill parts prefab arrays
-    private GameObject[] InitializePartsPrefabs(string dirName)
-    {
-        return Resources.LoadAll<GameObject>(dirName);
     }
 
     // Initialize each parts category
     private void InitializeParts()
     {
-        // Eyes
-        partsDropdowns[0].onValueChanged.AddListener(delegate
+        foreach (TMP_Dropdown dd in partsDropdowns)
         {
-            SetBodyPart(partsDropdowns[0].value, player.eyes, monsterParts.eyesTransform, monsterParts.eyes);
-        });
-
-        monsterParts.eyes = InitializePartsPrefabs(partsFolderNames[0]);
-
-        // Head Decor
-        partsDropdowns[1].onValueChanged.AddListener(delegate
-        {
-            SetBodyPart(partsDropdowns[1].value, player.headDecor, monsterParts.headDecorTransform, monsterParts.headDecor);
-        });
-
-        monsterParts.headDecor = InitializePartsPrefabs(partsFolderNames[1]);
-
-        // Mouth
-        partsDropdowns[2].onValueChanged.AddListener(delegate
-        {
-            SetBodyPart(partsDropdowns[2].value, player.mouth, monsterParts.mouthTransform, monsterParts.mouths);
-        });
-
-        monsterParts.mouths = InitializePartsPrefabs(partsFolderNames[2]);
+            dd.onValueChanged.AddListener(delegate
+            {
+                OnPartsDropdownChanged(dd);
+            });
+        }
     }
 
-    public void SetBodyPart(int index, GameObject part, Transform transform, GameObject[] monsterPartsArray)
+    public void OnPartsDropdownChanged(TMP_Dropdown dd)
     {
-        if (part != null)
-            Destroy(part);
-
-        if (index >= monsterPartsArray.Length)
-            return;
-
-        player.eyes = Instantiate(monsterPartsArray[index], transform);
+        int categoryIndex = partsDropdowns.IndexOf(dd);
+        monsterParts.SetBodyPart(categoryIndex, partsDropdowns[categoryIndex].value, player);
     }
 
     private Color RandomizeBaseColor()

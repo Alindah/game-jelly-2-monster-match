@@ -10,9 +10,7 @@ public class Monster
 
     // Appearance
     public Color baseColor;
-    public GameObject eyes;
-    public GameObject headDecor;
-    public GameObject mouth;
+    public GameObject[] bodyParts;
 
     // Monster constructor
     public Monster()
@@ -21,5 +19,7 @@ public class Monster
         age = "100";
         traits = Traits.SelectRandomTraits();
         compatibility = 0;
+
+        bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
     }
 }

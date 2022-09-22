@@ -1003,18 +1003,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f855f876e02ab4ab5ab85777b8ee27dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyes:
-  - {fileID: 6027929856836115427, guid: ad7a0e9d9348f4fc8a0b7080aa07d47c, type: 3}
-  - {fileID: 3852228951606136829, guid: de106d5da17a54dffa264b3741541c19, type: 3}
-  - {fileID: 6005481068862290216, guid: 3bab4f334a67f476d94b2fc2cac803ed, type: 3}
-  eyesTransform: {fileID: 3298162098025721731}
-  headDecor:
-  - {fileID: 433465639727950883, guid: c02b9219550054dccb570eaf32711719, type: 3}
-  - {fileID: 772825629651515965, guid: 4b55ab950835a4a8c80e4b4cd31c4854, type: 3}
-  - {fileID: 99064874884810396, guid: 83612bf48d5f24024a48d679cf2fcf26, type: 3}
-  headDecorTransform: {fileID: 3298162098025721730}
-  mouths: []
-  mouthTransform: {fileID: 1963181951}
+  transforms:
+  - {fileID: 3298162098025721731}
+  - {fileID: 3298162098025721730}
+  - {fileID: 1963181951}
 --- !u!1001 &2050777968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1766,7 +1758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514670380645570033, guid: 2ac4ae3e45cab42b3a4e6ce09ae3ba35, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8514670380645570033, guid: 2ac4ae3e45cab42b3a4e6ce09ae3ba35, type: 3}
       propertyPath: m_AnchorMax.x
