@@ -22,6 +22,7 @@ public class CustomizationUIManager : MonoBehaviour
     [Header("PARTS")]
     public GameObject partsDropdownObj;
     public Transform appearanceTransform;
+    public Transform baseTransform;
     public float partsDropdownSpacing;
 
     [Header("COLORS")]
@@ -29,6 +30,11 @@ public class CustomizationUIManager : MonoBehaviour
     public Color darkTextColor;
     public Color highlightedTextColor;
     public Color disabledTextColor;
+
+    [Header("Color Sliders")]
+    public Slider sliderRed;
+    public Slider sliderGreen;
+    public Slider sliderBlue;
 
     [Header("UI Objects")]
     public TMP_Text portraitHeader;
@@ -39,6 +45,7 @@ public class CustomizationUIManager : MonoBehaviour
     private Toggle[] traitToggles;
     private bool fullTraits = false;
     private Color disabledButtonTextColor;
+    private SpriteRenderer[] baseParts;
 
     private string PORTRAIT_HEADER_TEXT;
     private string TRAITS_UI_TEXT;
@@ -58,6 +65,8 @@ public class CustomizationUIManager : MonoBehaviour
         UpdatePortraitTraits();
         PopulateTraitsToggles();
         PopulatePartsDropdown();
+        SetInitialColorSlider(RandomizeBaseColor());
+        SetBaseColor();
     }
 
     // Make sure player is valid before allowing user to continue
@@ -252,6 +261,31 @@ public class CustomizationUIManager : MonoBehaviour
             //partsDropdowns[i].AddOptions(traits);
             //partsDropdowns[i].value = player.traits[i];
         }
+    }
+
+    private Color RandomizeBaseColor()
+    {
+        float randomRed = Random.Range(0, 1.0f);
+        float randomGreen = Random.Range(0, 1.0f);
+        float randomBlue = Random.Range(0, 1.0f);
+
+        return new Color(randomRed, randomGreen, randomBlue, 1);
+    }
+
+    private void SetInitialColorSlider(Color color)
+    {
+        sliderRed.value = color.r;
+        sliderGreen.value = color.g;
+        sliderBlue.value = color.b;
+    }
+
+    public void SetBaseColor()
+    {
+        baseParts = baseTransform.GetComponentsInChildren<SpriteRenderer>();
+        player.baseColor = new Color(sliderRed.value, sliderGreen.value, sliderBlue.value, 1);
+
+        foreach (SpriteRenderer sprite in baseParts)
+            sprite.color = player.baseColor;
     }
 
     public void FinalizePlayer()
