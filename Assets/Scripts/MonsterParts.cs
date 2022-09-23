@@ -48,6 +48,7 @@ public class MonsterParts : MonoBehaviour
             return;
 
         monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], transforms[categoryIndex]);
+        monster.bodyPartsInt[categoryIndex] = partIndex;
     }
 
     // Randomize body parts

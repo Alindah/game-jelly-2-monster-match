@@ -11,6 +11,7 @@ public class Monster
     // Appearance
     public Color baseColor;
     public GameObject[] bodyParts;
+    public int[] bodyPartsInt;
 
     // Monster constructor
     public Monster()
@@ -24,5 +25,6 @@ public class Monster
         // Appearance
         baseColor = MonsterParts.RandomizeBaseColor();
         bodyParts = MonsterParts.RandomizeParts();
+        bodyPartsInt = new int[MonsterParts.numOfPartsCategories];
     }
 }
