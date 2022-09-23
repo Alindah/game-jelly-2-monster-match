@@ -546,6 +546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1331092154 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4545558079578654160, guid: 321a194251a9c470686e84263d849b81, type: 3}
+  m_PrefabInstance: {fileID: 3298162098025721728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1380350047 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9037435740948986793, guid: 4593b48ce5ca84cf19f0c59ab714ee37, type: 3}
@@ -1264,6 +1269,18 @@ PrefabInstance:
       propertyPath: baseTransform
       value: 
       objectReference: {fileID: 342422958}
+    - target: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: portraitHeader
+      value: 
+      objectReference: {fileID: 1162868470}
+    - target: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: portraitTraits
+      value: 
+      objectReference: {fileID: 2105663345}
+    - target: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: portraitTransform
+      value: 
+      objectReference: {fileID: 1331092154}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321a194251a9c470686e84263d849b81, type: 3}
 --- !u!4 &3298162098025721730 stripped

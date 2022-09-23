@@ -1,6 +1,5 @@
 using UnityEngine;
 using static SaveManager;
-using static Traits;
 using static Constants;
 
 public class Matchmaker : MonoBehaviour
@@ -12,8 +11,9 @@ public class Matchmaker : MonoBehaviour
     public int swipesAvailable = 10;
 
     public Monster suitor;
+    public AppUIManager appUIManager;
 
-    public void Start()
+    public void Awake()
     {
         GenerateNewSuitor();
     }
@@ -30,6 +30,7 @@ public class Matchmaker : MonoBehaviour
         swipesAvailable--;
         deckSize--;
         EndConditions();
+        appUIManager.ShowNextSuitor();
     }
 
     public void OnPressDislike()
@@ -38,6 +39,7 @@ public class Matchmaker : MonoBehaviour
         GenerateNewSuitor();
         deckSize--;
         EndConditions();
+        appUIManager.ShowNextSuitor();
     }
 
     private int CalculateMatchChance()

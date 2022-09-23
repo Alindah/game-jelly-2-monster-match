@@ -4,14 +4,40 @@ using static Constants;
 
 public class FillCard : MonoBehaviour
 {
+    public Transform portraitTransform;
     public Transform baseTransform;
+    public TMP_Text portraitHeader;
+    public TMP_Text portraitTraits;
+
+    private string headerFormat = "";
+
+    private void Awake()
+    {
+        headerFormat = portraitHeader.text;
+    }
+
+    public void FillFullCard(Monster monster)
+    {
+        FillInfo(monster);
+        FillPortrait(monster);
+    }
+
+    public void ClearCard()
+    {
+        portraitHeader.text = headerFormat;
+        portraitTraits.text = "";
+
+        // Destroy all body parts except for base
+        foreach (Transform child in portraitTransform)
+        {
+            if (child != baseTransform)
+                Destroy(child.gameObject);
+        }    
+    }
 
     public void FillInfo(Monster monster, bool showCompatibility = false)
     {
-        TMP_Text portraitHeader = GameObject.Find(MONSTER_INFO).GetComponent<TMP_Text>();
-        TMP_Text portraitTraits = GameObject.Find(TRAITS_INFO).GetComponent<TMP_Text>();
-
-        portraitHeader.text = string.Format(portraitHeader.text, monster.name, monster.age);
+        portraitHeader.text = string.Format(headerFormat, monster.name, monster.age);
         portraitTraits.text = "";
 
         foreach (int trait in monster.traits)
@@ -25,7 +51,7 @@ public class FillCard : MonoBehaviour
         }
     }
 
-    public void FillPortrait(Monster monster, Transform transform)
+    public void FillPortrait(Monster monster)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
         {
@@ -33,7 +59,8 @@ public class FillCard : MonoBehaviour
             if (monster.bodyPartsInt[i] >= MonsterParts.partsList[i].Length)
                 continue;
 
-            monster.bodyParts[i] = Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], transform);
+            monster.bodyParts[i] = Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], portraitTransform);
+            Debug.Log(monster.bodyParts[i]);
         }
 
         // Color bases

@@ -54,6 +54,6 @@ public class ConclusionsManager : MonoBehaviour
     private void SpotlightMonster(Monster monster)
     {
         spotlight.GetComponent<FillCard>().FillInfo(monster, true);
-        spotlight.GetComponent<FillCard>().FillPortrait(monster, spotlightTransform);
+        spotlight.GetComponent<FillCard>().FillPortrait(monster);
     }
 }
