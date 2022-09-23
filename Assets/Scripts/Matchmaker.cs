@@ -11,7 +11,7 @@ public class Matchmaker : MonoBehaviour
     public int deckSize = 30;
     public int swipesAvailable = 10;
 
-    private Monster suitor;
+    public Monster suitor;
 
     public void Start()
     {

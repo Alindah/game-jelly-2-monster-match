@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3732599122677241118}
   - component: {fileID: 3732599122677241119}
   m_Layer: 0
-  m_Name: Pearly Whites (Right)
+  m_Name: Rawr (Right)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2132478640, guid: c71104a1590664625a87f1c6d2fefac2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
