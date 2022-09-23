@@ -457,6 +457,14 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3298162099067207844, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0567307
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298162099067207844, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
       propertyPath: baseTransform
       value: 
