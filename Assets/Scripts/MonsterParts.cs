@@ -10,12 +10,11 @@ public class MonsterParts : MonoBehaviour
     public static int numOfPartsCategories = partsDir.Length;
     public static string[] partsCategoryNames = new string[numOfPartsCategories];
     public static List<GameObject[]> partsList = new List<GameObject[]>();
+    public static List<string> partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
 
     public Transform[] transforms;
 
-    private List<string> partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
-
-    private void Awake()
+    public static void InitializeMonsterParts()
     {
         // Initial parts data
         for (int i = 0; i < numOfPartsCategories; i++)
@@ -34,7 +33,7 @@ public class MonsterParts : MonoBehaviour
     }
 
     // Fill parts prefab arrays
-    public GameObject[] InitializePartsPrefabs(string dirName)
+    public static GameObject[] InitializePartsPrefabs(string dirName)
     {
         return Resources.LoadAll<GameObject>(dirName);
     }

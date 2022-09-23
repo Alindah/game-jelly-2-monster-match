@@ -53,6 +53,12 @@ public class CustomizationUIManager : MonoBehaviour
     private string TRAITS_UI_TEXT;
     private string FILE_TYPE = ".png";
 
+    private void Awake()
+    {
+        MonsterParts.InitializeMonsterParts();
+        InitializePlayer();
+    }
+
     private void Start()
     {
         // Set text templates
@@ -288,6 +294,7 @@ public class CustomizationUIManager : MonoBehaviour
     {
         int categoryIndex = partsDropdowns.IndexOf(dd);
         monsterParts.SetBodyPart(categoryIndex, partsDropdowns[categoryIndex].value, player);
+        SetBaseColor();
     }
 
     private void SetInitialColorSlider(Color color)

@@ -40,8 +40,6 @@ public class SaveManager : MonoBehaviour
         // Prevent this game object from being destroyed upon restart
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        InitializePlayer();
     }
 
     public static void InitializePlayer()
