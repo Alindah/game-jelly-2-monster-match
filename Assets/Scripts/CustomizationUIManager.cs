@@ -317,7 +317,5 @@ public class CustomizationUIManager : MonoBehaviour
     {
         if (PlayerIsValid())
             GameController.MoveToScene(APP_SCENE);
-        else
-            Debug.Log("Invalid player!");
     }
 }

@@ -46,7 +46,10 @@ public class MonsterParts : MonoBehaviour
             Destroy(monster.bodyParts[categoryIndex]);
 
         if (partIndex >= partsList[categoryIndex].Length)
+        {
+            monster.bodyPartsInt[categoryIndex] = partIndex;
             return;
+        }
 
         monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], transforms[categoryIndex]);
         monster.bodyPartsInt[categoryIndex] = partIndex;

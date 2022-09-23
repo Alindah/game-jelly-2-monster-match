@@ -28,10 +28,17 @@ public class FillCard : MonoBehaviour
     public void FillPortrait(Monster monster, Transform transform)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
+        {
+            // Do not instantiate a part if player chose none for it
+            if (monster.bodyPartsInt[i] >= MonsterParts.partsList[i].Length)
+                continue;
+
             monster.bodyParts[i] = Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], transform);
+        }
 
         // Color bases
-        monster.bodyParts[MonsterParts.HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+        if (monster.bodyPartsInt[MonsterParts.HEAD_INDEX] < MonsterParts.partsList[MonsterParts.HEAD_INDEX].Length)
+            monster.bodyParts[MonsterParts.HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
 
         foreach (SpriteRenderer sprite in baseTransform.GetComponentsInChildren<SpriteRenderer>())
             sprite.color = monster.baseColor;
