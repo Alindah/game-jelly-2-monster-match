@@ -30,7 +30,6 @@ public class Matchmaker : MonoBehaviour
         swipesAvailable--;
         deckSize--;
         EndConditions();
-        appUIManager.ShowNextSuitor();
     }
 
     public void OnPressDislike()
@@ -39,7 +38,6 @@ public class Matchmaker : MonoBehaviour
         GenerateNewSuitor();
         deckSize--;
         EndConditions();
-        appUIManager.ShowNextSuitor();
     }
 
     private int CalculateMatchChance()
@@ -79,5 +77,7 @@ public class Matchmaker : MonoBehaviour
     {
         if (swipesAvailable <= 0 || deckSize <= 0)
             GameController.MoveToScene(CONCLUSION_SCENE);
+        else
+            appUIManager.ShowNextSuitor();
     }
 }

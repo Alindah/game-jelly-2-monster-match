@@ -60,7 +60,6 @@ public class FillCard : MonoBehaviour
                 continue;
 
             monster.bodyParts[i] = Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], portraitTransform);
-            Debug.Log(monster.bodyParts[i]);
         }
 
         // Color bases

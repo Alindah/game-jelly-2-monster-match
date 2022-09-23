@@ -55,18 +55,7 @@ public class MonsterParts : MonoBehaviour
         monster.bodyPartsInt[categoryIndex] = partIndex;
     }
 
-    /*
     // Randomize body parts
-    public static GameObject[] RandomizeParts()
-    {
-        GameObject[] parts = new GameObject[numOfPartsCategories];
-
-        for (int i = 0; i < numOfPartsCategories; i++)
-            parts[i] = partsList[i][Random.Range(0, partsList[i].Length)];
-
-        return parts;
-    }*/
-
     public static int[] RandomizeParts()
     {
         int[] partsInt = new int[numOfPartsCategories];
