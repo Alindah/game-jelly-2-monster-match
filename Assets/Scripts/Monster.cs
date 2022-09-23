@@ -17,8 +17,8 @@ public class Monster
     public Monster()
     {
         // Info
-        name = "Lonely Monster";
-        age = "100";
+        name = NamesList.GenerateRandomName();
+        age = Random.Range(0, 1001).ToString();
         traits = Traits.SelectRandomTraits();
         compatibility = 0;
 

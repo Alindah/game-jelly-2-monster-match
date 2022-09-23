@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 1317292232}
   - component: {fileID: 1317292231}
   - component: {fileID: 1317292233}
+  - component: {fileID: 1317292234}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -551,6 +552,18 @@ MonoBehaviour:
   playerCard: {fileID: 1442567343}
   playerPortraitTransform: {fileID: 717105231}
   suitorCard: {fileID: 0}
+--- !u!114 &1317292234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317292229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c1e92d800944ff7a145324d9d23266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1442567343 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
