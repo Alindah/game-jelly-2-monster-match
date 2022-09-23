@@ -4,12 +4,11 @@ using static Constants;
 
 public class FillCard : MonoBehaviour
 {
-    private Transform baseTransform;
+    public Transform baseTransform;
     private SpriteRenderer[] baseParts;
 
     private void Start()
     {
-        baseTransform = transform.Find("Base");
         //baseParts = baseTransform.GetComponentsInChildren<SpriteRenderer>();
 
     }
@@ -36,8 +35,12 @@ public class FillCard : MonoBehaviour
     public void FillPortrait(Monster monster, Transform transform)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
-        {
-            Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], transform);
-        }
+            monster.bodyParts[i] = Instantiate(MonsterParts.partsList[i][monster.bodyPartsInt[i]], transform);
+
+        // Color bases
+        monster.bodyParts[MonsterParts.HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+
+        foreach (SpriteRenderer sprite in baseTransform.GetComponentsInChildren<SpriteRenderer>())
+            sprite.color = monster.baseColor;
     }
 }

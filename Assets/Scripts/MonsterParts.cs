@@ -11,6 +11,7 @@ public class MonsterParts : MonoBehaviour
     public static string[] partsCategoryNames = new string[numOfPartsCategories];
     public static List<GameObject[]> partsList = new List<GameObject[]>();
     public static List<string> partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
+    public static int HEAD_INDEX = 1;   // This is the category part that is the head (MAY CHANGE BASED ON FOLDER ORDER)
 
     public Transform[] transforms;
 
