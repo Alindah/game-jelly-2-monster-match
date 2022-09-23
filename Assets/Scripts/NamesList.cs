@@ -73,7 +73,20 @@ public enum Names
     viv,
     con,
     rico,
-    suave
+    suave,
+    uni,
+    bro,
+    tar,
+    kus,
+    mie,
+    ily,
+    lou,
+    belle,
+    amy,
+    sal,
+    vivi,
+    hono,
+    lulu
 }
 
 public class NamesList : MonoBehaviour
