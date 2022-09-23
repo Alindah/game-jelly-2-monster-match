@@ -256,6 +256,7 @@ MonoBehaviour:
   rejectionsHeader: {fileID: 1114812239}
   trueLoveGameObj: {fileID: 1443447019}
   spotlight: {fileID: 1739950600}
+  spotlightTransform: {fileID: 1739950601}
 --- !u!114 &612201873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,11 +907,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spotlight
       objectReference: {fileID: 0}
+    - target: {fileID: 7721999477564773084, guid: 321a194251a9c470686e84263d849b81, type: 3}
+      propertyPath: baseTransform
+      value: 
+      objectReference: {fileID: 1739950602}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321a194251a9c470686e84263d849b81, type: 3}
 --- !u!1 &1739950600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3298162097598798335, guid: 321a194251a9c470686e84263d849b81, type: 3}
+  m_PrefabInstance: {fileID: 1739950599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1739950601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4545558079578654160, guid: 321a194251a9c470686e84263d849b81, type: 3}
+  m_PrefabInstance: {fileID: 1739950599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1739950602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1157484104738334551, guid: 321a194251a9c470686e84263d849b81, type: 3}
   m_PrefabInstance: {fileID: 1739950599}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6019512224938501860

@@ -5,13 +5,6 @@ using static Constants;
 public class FillCard : MonoBehaviour
 {
     public Transform baseTransform;
-    private SpriteRenderer[] baseParts;
-
-    private void Start()
-    {
-        //baseParts = baseTransform.GetComponentsInChildren<SpriteRenderer>();
-
-    }
 
     public void FillInfo(Monster monster, bool showCompatibility = false)
     {

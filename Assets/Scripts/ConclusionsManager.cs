@@ -11,6 +11,7 @@ public class ConclusionsManager : MonoBehaviour
 
     [Header("Spotlight")]
     public GameObject spotlight;
+    public Transform spotlightTransform;
 
     private List<Monster> allMonsters;
 
@@ -53,5 +54,6 @@ public class ConclusionsManager : MonoBehaviour
     private void SpotlightMonster(Monster monster)
     {
         spotlight.GetComponent<FillCard>().FillInfo(monster, true);
+        spotlight.GetComponent<FillCard>().FillPortrait(monster, spotlightTransform);
     }
 }
