@@ -16,10 +16,10 @@ public class FillCard : MonoBehaviour
         headerFormat = portraitHeader.text;
     }
 
-    public void FillFullCard(Monster monster)
+    public void FillFullCard(Monster monster, bool showCompatibility = false)
     {
-        FillInfo(monster);
-        FillPortrait(monster);
+        FillInfo(monster, showCompatibility);
+        MonsterParts.CreatePortrait(monster, portraitTransform, baseTransform);
     }
 
     public void ClearCard()
@@ -51,6 +51,7 @@ public class FillCard : MonoBehaviour
         }
     }
 
+    /*
     public void FillPortrait(Monster monster)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
@@ -68,5 +69,5 @@ public class FillCard : MonoBehaviour
 
         foreach (SpriteRenderer sprite in baseTransform.GetComponentsInChildren<SpriteRenderer>())
             sprite.color = monster.baseColor;
-    }
+    }*/
 }

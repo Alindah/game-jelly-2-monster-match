@@ -18,7 +18,7 @@ public class Monster
     {
         // Info
         name = NamesList.GenerateRandomName();
-        age = GenerateRandomAge(5, 65, 1.0f, 10.0f, 25);
+        age = GenerateRandomAge(18, 65, 0.5f, 10.0f, 25);
         traits = Traits.SelectRandomTraits();
         compatibility = 0;
 
@@ -29,7 +29,7 @@ public class Monster
     }
 
     // Random age generator
-    private string GenerateRandomAge(int minIn, int maxEx, float multiplierMin = 1, float multiplierMax = 10, int multiplierChance = 10)
+    private string GenerateRandomAge(int minIn, int maxEx, float multiplierMin = 0.5f, float multiplierMax = 10, int multiplierChance = 10)
     {
         int age = Random.Range(minIn, maxEx);
 

@@ -75,4 +75,24 @@ public class MonsterParts : MonoBehaviour
 
         return new Color(randomRed, randomGreen, randomBlue, 1);
     }
+
+    // Create monster head
+    public static void CreatePortrait(Monster monster, Transform mainTransform, Transform baseTransform)
+    {
+        for (int i = 0; i < monster.bodyParts.Length; i++)
+        {
+            // Do not instantiate a part if player chose none for it
+            if (monster.bodyPartsInt[i] >= partsList[i].Length)
+                continue;
+
+            monster.bodyParts[i] = Instantiate(partsList[i][monster.bodyPartsInt[i]], mainTransform);
+        }
+
+        // Color bases
+        if (monster.bodyPartsInt[HEAD_INDEX] < partsList[HEAD_INDEX].Length)
+            monster.bodyParts[HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+
+        foreach (SpriteRenderer sprite in baseTransform.GetComponentsInChildren<SpriteRenderer>())
+            sprite.color = monster.baseColor;
+    }
 }

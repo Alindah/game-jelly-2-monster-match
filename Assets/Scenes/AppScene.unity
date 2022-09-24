@@ -395,9 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCard: {fileID: 1442567343}
-  playerPortraitTransform: {fileID: 717105231}
   suitorCard: {fileID: 2023974726}
-  suitorPortraitTransform: {fileID: 2023974727}
   matchmaker: {fileID: 1317292231}
 --- !u!114 &1317292234
 MonoBehaviour:
@@ -1018,6 +1016,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonDislike
       objectReference: {fileID: 0}
+    - target: {fileID: 506561689074382652, guid: f2217d71cdc83450681b7142f9d29703, type: 3}
+      propertyPath: m_Color.b
+      value: 0.12019401
+      objectReference: {fileID: 0}
+    - target: {fileID: 506561689074382652, guid: f2217d71cdc83450681b7142f9d29703, type: 3}
+      propertyPath: m_Color.g
+      value: 0.13795918
+      objectReference: {fileID: 0}
+    - target: {fileID: 506561689074382652, guid: f2217d71cdc83450681b7142f9d29703, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6886792
+      objectReference: {fileID: 0}
     - target: {fileID: 506561689074382654, guid: f2217d71cdc83450681b7142f9d29703, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1271,6 +1281,18 @@ PrefabInstance:
     - target: {fileID: 5448963005991445033, guid: 63785a2a7bcd54e238b97a0fd79f2dc3, type: 3}
       propertyPath: m_Name
       value: ButtonLike
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448963005991445044, guid: 63785a2a7bcd54e238b97a0fd79f2dc3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16278188
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448963005991445044, guid: 63785a2a7bcd54e238b97a0fd79f2dc3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448963005991445044, guid: 63785a2a7bcd54e238b97a0fd79f2dc3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15508187
       objectReference: {fileID: 0}
     - target: {fileID: 5448963005991445046, guid: 63785a2a7bcd54e238b97a0fd79f2dc3, type: 3}
       propertyPath: m_Pivot.x
