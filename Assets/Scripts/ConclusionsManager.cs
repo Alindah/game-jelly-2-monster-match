@@ -8,6 +8,9 @@ public class ConclusionsManager : MonoBehaviour
     public TMP_Text matchesHeader;
     public TMP_Text rejectionsHeader;
     public GameObject trueLoveGameObj;
+    public GameObject monsterHead;
+    public Transform matchesRow1;
+    public Transform matchesRow2;
 
     [Header("Spotlight")]
     public GameObject spotlight;
@@ -47,6 +50,8 @@ public class ConclusionsManager : MonoBehaviour
         Debug.Log("**************");
         foreach (Monster m in monsters)
         {
+            GameObject head = Instantiate(monsterHead, matchesRow1);
+            MonsterParts.CreatePortrait(m, head.transform, head.transform);
             Debug.Log(string.Format("{0}, {1}", m.name, m.age));
         }
     }
