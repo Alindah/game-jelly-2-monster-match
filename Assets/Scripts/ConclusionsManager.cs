@@ -10,6 +10,11 @@ public class ConclusionsManager : MonoBehaviour
     public GameObject trueLoveGameObj;
     public GameObject monsterHead;
     public Transform matchesContainer;
+    public Transform matchesContainer2;
+    public Transform rejectionsContainer;
+    public Transform rejectionsContainer2;
+    public float xOffset = 2f;
+    public int maxPerRow = 5;
 
     [Header("Spotlight")]
     public GameObject spotlight;
@@ -28,8 +33,8 @@ public class ConclusionsManager : MonoBehaviour
         rejectionsHeader.text = string.Format(rejectionsHeader.text, player.rejections.Count);
 
         // Display monster cards
-        DisplayMonsters(player.matches);
-        DisplayMonsters(player.rejections);
+        DisplayMonsters(player.matches, matchesContainer, matchesContainer2);
+        DisplayMonsters(player.rejections, rejectionsContainer, rejectionsContainer2);
 
         // If player rejected all monsters, display player in  spotlight
         // otherwise, spotlight first monster
@@ -44,17 +49,19 @@ public class ConclusionsManager : MonoBehaviour
         }
     }
 
-    private void DisplayMonsters(List<Monster> monsters)
+    private void DisplayMonsters(List<Monster> monsters, Transform container, Transform container2)
     {
-        foreach (Monster m in monsters)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            GameObject head = Instantiate(monsterHead, matchesContainer);
+            Transform tf = i < maxPerRow ? container : container2;
+            GameObject head = Instantiate(monsterHead, tf);
             Transform baseTransform = head.transform.Find(Constants.BASE_GAMEOBJECT_NAME);
-            MonsterParts.CreatePortrait(m, head.transform, baseTransform, true);
-            float yOffset = baseTransform.GetChild(0).transform.position.y;
-            Debug.Log(yOffset);
-            //head.transform.position = new Vector2(head.transform.position.x, head.transform.position.y - yOffset);
-            Debug.Log(string.Format("{0}, {1}", m.name, m.age));
+            MonsterParts.CreatePortrait(monsters[i], head.transform, baseTransform, true);
+
+            // Y Offset
+            float yOffset = baseTransform.GetChild(0).transform.localPosition.y / 2;
+
+            head.transform.position = new Vector2(head.transform.position.x + xOffset * (i % maxPerRow), head.transform.position.y - yOffset);
         }
     }
 
