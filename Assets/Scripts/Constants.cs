@@ -13,4 +13,6 @@ public class Constants
     public static string COMPATIBILITY_INFO = "CompatibilityInfo";
     public static string NONE_TEXT = "None";
     public static string BASE_GAMEOBJECT_NAME = "Base";
+    public static string CONTAINER_GAMEOBJECT_NAME = "Container";
+    public static string GAMECONTROLLER_NAME = "GameController";
 }

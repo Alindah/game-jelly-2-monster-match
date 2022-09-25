@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static SaveManager;
+using static Constants;
 
 public class ConclusionsManager : MonoBehaviour
 {
@@ -55,18 +56,23 @@ public class ConclusionsManager : MonoBehaviour
         {
             Transform tf = i < maxPerRow ? container : container2;
             GameObject head = Instantiate(monsterHead, tf);
-            Transform baseTransform = head.transform.Find(Constants.BASE_GAMEOBJECT_NAME);
+            Transform baseTransform = head.transform.Find(BASE_GAMEOBJECT_NAME);
+            head.GetComponent<MonsterHead>().monster = monsters[i];
             MonsterParts.CreatePortrait(monsters[i], head.transform, baseTransform, true);
 
             // Y Offset
-            float yOffset = baseTransform.GetChild(0).transform.localPosition.y / 2;
+            float triggerYOffset = baseTransform.GetChild(0).transform.localPosition.y;
+            float yOffset = triggerYOffset / 2;
 
             head.transform.position = new Vector2(head.transform.position.x + xOffset * (i % maxPerRow), head.transform.position.y - yOffset);
+            head.GetComponent<BoxCollider2D>().offset = new Vector2(0, triggerYOffset);
         }
     }
 
-    private void SpotlightMonster(Monster monster)
+    public void SpotlightMonster(Monster monster)
     {
-        spotlight.GetComponent<FillCard>().FillFullCard(monster, true);
+        FillCard card = spotlight.GetComponent<FillCard>();
+        card.ClearCard();
+        //card.FillFullCard(monster, true);
     }
 }
