@@ -12,4 +12,5 @@ public class Constants
     public static string TRAITS_INFO = "TraitsInfo";
     public static string COMPATIBILITY_INFO = "CompatibilityInfo";
     public static string NONE_TEXT = "None";
+    public static string BASE_GAMEOBJECT_NAME = "Base";
 }

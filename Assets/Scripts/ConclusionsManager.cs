@@ -9,8 +9,7 @@ public class ConclusionsManager : MonoBehaviour
     public TMP_Text rejectionsHeader;
     public GameObject trueLoveGameObj;
     public GameObject monsterHead;
-    public Transform matchesRow1;
-    public Transform matchesRow2;
+    public Transform matchesContainer;
 
     [Header("Spotlight")]
     public GameObject spotlight;
@@ -47,11 +46,14 @@ public class ConclusionsManager : MonoBehaviour
 
     private void DisplayMonsters(List<Monster> monsters)
     {
-        Debug.Log("**************");
         foreach (Monster m in monsters)
         {
-            GameObject head = Instantiate(monsterHead, matchesRow1);
-            MonsterParts.CreatePortrait(m, head.transform, head.transform);
+            GameObject head = Instantiate(monsterHead, matchesContainer);
+            Transform baseTransform = head.transform.Find(Constants.BASE_GAMEOBJECT_NAME);
+            MonsterParts.CreatePortrait(m, head.transform, baseTransform, true);
+            float yOffset = baseTransform.GetChild(0).transform.position.y;
+            Debug.Log(yOffset);
+            //head.transform.position = new Vector2(head.transform.position.x, head.transform.position.y - yOffset);
             Debug.Log(string.Format("{0}, {1}", m.name, m.age));
         }
     }

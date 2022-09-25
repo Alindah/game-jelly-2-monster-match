@@ -42,6 +42,8 @@ public class MonsterParts : MonoBehaviour
     // Set body part of a monster
     public void SetBodyPart(int categoryIndex, int partIndex, Monster monster)
     {
+        Transform tf = transforms[categoryIndex];
+
         if (monster.bodyParts[categoryIndex] != null)
             Destroy(monster.bodyParts[categoryIndex]);
 
@@ -51,7 +53,7 @@ public class MonsterParts : MonoBehaviour
             return;
         }
 
-        monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], transforms[categoryIndex]);
+        monster.bodyParts[categoryIndex] = Instantiate(partsList[categoryIndex][partIndex], tf);
         monster.bodyPartsInt[categoryIndex] = partIndex;
     }
 
@@ -77,7 +79,7 @@ public class MonsterParts : MonoBehaviour
     }
 
     // Create monster head
-    public static void CreatePortrait(Monster monster, Transform mainTransform, Transform baseTransform)
+    public static void CreatePortrait(Monster monster, Transform mainTransform, Transform baseTransform, bool moveHead = false)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
         {
@@ -88,10 +90,16 @@ public class MonsterParts : MonoBehaviour
             monster.bodyParts[i] = Instantiate(partsList[i][monster.bodyPartsInt[i]], mainTransform);
         }
 
-        // Color bases
+        // Deal with head
         if (monster.bodyPartsInt[HEAD_INDEX] < partsList[HEAD_INDEX].Length)
-            monster.bodyParts[HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+        {
+            if (moveHead)
+                monster.bodyParts[HEAD_INDEX].transform.parent = baseTransform;
+            else
+                monster.bodyParts[HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+        }
 
+        // Color base
         foreach (SpriteRenderer sprite in baseTransform.GetComponentsInChildren<SpriteRenderer>())
             sprite.color = monster.baseColor;
     }

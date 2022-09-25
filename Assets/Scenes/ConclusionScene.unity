@@ -252,12 +252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060842d69c43e4122808841753c2f864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchesHeader: {fileID: 0}
-  rejectionsHeader: {fileID: 0}
+  matchesHeader: {fileID: 762149072}
+  rejectionsHeader: {fileID: 1163822043}
   trueLoveGameObj: {fileID: 1443447019}
   monsterHead: {fileID: 2471115782617579370, guid: 14c044f0d76ca49b6bb92786e9e4e96c, type: 3}
-  matchesRow1: {fileID: 0}
-  matchesRow2: {fileID: 0}
+  matchesContainer: {fileID: 943146172}
   spotlight: {fileID: 1739950600}
   spotlightTransform: {fileID: 1739950601}
 --- !u!114 &612201873
@@ -272,6 +271,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bd238886ea644b8be38778f3e681b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &762149072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4194774631053585397, guid: 2f38ccbc41454473eba3cbda21970f80, type: 3}
+  m_PrefabInstance: {fileID: 4194774631672550181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &943146172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4194774630732322713, guid: 2f38ccbc41454473eba3cbda21970f80, type: 3}
+  m_PrefabInstance: {fileID: 4194774631672550181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1163822042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,6 +348,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f38ccbc41454473eba3cbda21970f80, type: 3}
+--- !u!114 &1163822043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4194774631053585397, guid: 2f38ccbc41454473eba3cbda21970f80, type: 3}
+  m_PrefabInstance: {fileID: 1163822042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1267998553
 PrefabInstance:
   m_ObjectHideFlags: 0
