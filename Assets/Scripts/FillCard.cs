@@ -9,11 +9,15 @@ public class FillCard : MonoBehaviour
     public TMP_Text portraitHeader;
     public TMP_Text portraitTraits;
 
+    private TMP_Text compatibilityInfo;
     private string headerFormat = "";
+    private string compatibilityFormat = "";
 
     private void Awake()
     {
         headerFormat = portraitHeader.text;
+        compatibilityInfo = gameObject.transform.Find(COMPATIBILITY_INFO).GetComponent<TMP_Text>();
+        compatibilityFormat = compatibilityInfo.text;
     }
 
     public void FillFullCard(Monster monster, bool showCompatibility = false)
@@ -45,9 +49,8 @@ public class FillCard : MonoBehaviour
 
         if (showCompatibility)
         {
-            TMP_Text compatibilityInfo = gameObject.transform.Find(COMPATIBILITY_INFO).GetComponent<TMP_Text>();
             compatibilityInfo.gameObject.SetActive(true);
-            compatibilityInfo.text = string.Format(compatibilityInfo.text, monster.compatibility);
+            compatibilityInfo.text = string.Format(compatibilityFormat, monster.compatibility);
         }
     }
 }

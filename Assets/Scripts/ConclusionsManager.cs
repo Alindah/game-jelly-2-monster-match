@@ -73,6 +73,6 @@ public class ConclusionsManager : MonoBehaviour
     {
         FillCard card = spotlight.GetComponent<FillCard>();
         card.ClearCard();
-        //card.FillFullCard(monster, true);
+        card.FillFullCard(monster, true);
     }
 }

@@ -14,6 +14,6 @@ public class MonsterHead : MonoBehaviour
 
     private void OnMouseDown()
     {
-        conManager.SpotlightMonster(GetComponent<Monster>());
+        conManager.SpotlightMonster(monster);
     }
 }
