@@ -34,7 +34,6 @@ public class Matchmaker : MonoBehaviour
 
     public void OnPressDislike()
     {
-        Debug.Log("You rejected this monster :(");
         GenerateNewSuitor();
         deckSize--;
         EndConditions();
@@ -52,7 +51,6 @@ public class Matchmaker : MonoBehaviour
                 matchChance -= dislikeDecrease;
         }
 
-        Debug.Log("you have a " + matchChance + "% chance of matching");
         return matchChance;
     }
 
@@ -62,22 +60,21 @@ public class Matchmaker : MonoBehaviour
         suitor.compatibility = CalculateMatchChance();
 
         if (chemistry <= suitor.compatibility)
-        {
-            Debug.Log("congrats, you matched!");
             player.matches.Add(suitor);
-        }
         else
-        {
-            Debug.Log("they rejected your ugly ass");
             player.rejections.Add(suitor);
-        }
     }
 
     private void EndConditions()
     {
         if (swipesAvailable <= 0 || deckSize <= 0)
+        {
             GameController.MoveToScene(CONCLUSION_SCENE);
+        }
         else
+        {
+            appUIManager.UpdateUIText();
             appUIManager.ShowNextSuitor();
+        }
     }
 }
