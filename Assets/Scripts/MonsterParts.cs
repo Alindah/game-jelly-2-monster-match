@@ -6,14 +6,24 @@ using static Constants;
 
 public class MonsterParts : MonoBehaviour
 {
-    public static string[] partsDir = Directory.GetDirectories(PARTS_PATH);
-    public static int numOfPartsCategories = partsDir.Length;
-    public static string[] partsCategoryNames = new string[numOfPartsCategories];
-    public static List<GameObject[]> partsList = new List<GameObject[]>();
-    public static List<string> partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
+    public static string[] partsDir;
+    public static int numOfPartsCategories;
+    public static string[] partsCategoryNames;
+    public static List<GameObject[]> partsList;
+    public static List<string> partsFolderNames;
     public static int HEAD_INDEX = 1;   // This is the category part that is the head (MAY CHANGE BASED ON FOLDER ORDER)
 
     public Transform[] transforms;
+
+    private void Awake()
+    {
+        partsDir = Directory.GetDirectories(PARTS_PATH);
+        numOfPartsCategories = partsDir.Length;
+        partsCategoryNames = new string[numOfPartsCategories];
+        partsList = new List<GameObject[]>();
+        partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
+        SaveManager.monsterParts = this;
+    }
 
     public static void InitializeMonsterParts()
     {
@@ -39,7 +49,6 @@ public class MonsterParts : MonoBehaviour
         return Resources.LoadAll<GameObject>(dirName);
     }
 
-    // Set body part of a monster
     public void SetBodyPart(int categoryIndex, int partIndex, Monster monster)
     {
         Transform tf = transforms[categoryIndex];
@@ -78,7 +87,6 @@ public class MonsterParts : MonoBehaviour
         return new Color(randomRed, randomGreen, randomBlue, 1);
     }
 
-    // Create monster head
     public static void CreatePortrait(Monster monster, Transform mainTransform, Transform baseTransform, bool moveHead = false)
     {
         for (int i = 0; i < monster.bodyParts.Length; i++)
