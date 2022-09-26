@@ -13,20 +13,43 @@ public class MonsterParts : MonoBehaviour
     public List<string> partsFolderNames;
     public int HEAD_INDEX = 1;   // This is the category part that is the head (MAY CHANGE BASED ON FOLDER ORDER)
 
+    [Header("Prefabs")]
+    public GameObject[] eyesPrefabs;
+    public GameObject[] headPrefabs;
+    public GameObject[] headDecorPrefabs;
+    public GameObject[] mouthPrefabs;
+    public static GameObject[] eyesPrefabsStatic;
+    public static GameObject[] headPrefabsStatic;
+    public static GameObject[] headDecorPrefabsStatic;
+    public static GameObject[] mouthPrefabsStatic;
+
     public Transform[] transforms;
+
 
     private void Awake()
     {
-        partsDir = Directory.GetDirectories(PARTS_PATH);
-        numOfPartsCategories = partsDir.Length;
-        partsCategoryNames = new string[numOfPartsCategories];
+        //partsDir = Directory.GetDirectories(PARTS_PATH);
+        //numOfPartsCategories = partsDir.Length;
+        //partsCategoryNames = new string[numOfPartsCategories];
         partsList = new List<GameObject[]>();
-        partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
+        //partsFolderNames = new List<string>(Directory.GetDirectories(PARTS_PREFABS_PATH));
+
+        eyesPrefabsStatic = eyesPrefabs;
+        headPrefabsStatic = headPrefabs;
+        headDecorPrefabsStatic = headDecorPrefabs;
+        mouthPrefabsStatic = mouthPrefabs;
+
         SaveManager.monsterParts = this;
     }
 
     public static void InitializeMonsterParts()
     {
+        SaveManager.monsterParts.partsList.Add(eyesPrefabsStatic);
+        SaveManager.monsterParts.partsList.Add(headPrefabsStatic);
+        SaveManager.monsterParts.partsList.Add(headDecorPrefabsStatic);
+        SaveManager.monsterParts.partsList.Add(mouthPrefabsStatic);
+
+        /*
         // Initial parts data
         for (int i = 0; i < SaveManager.monsterParts.numOfPartsCategories; i++)
         {
@@ -41,6 +64,7 @@ public class MonsterParts : MonoBehaviour
             // Add prefabs to each category
             SaveManager.monsterParts.partsList.Add(InitializePartsPrefabs(SaveManager.monsterParts.partsFolderNames[i]));
         }
+        */
     }
 
     // Fill parts prefab arrays

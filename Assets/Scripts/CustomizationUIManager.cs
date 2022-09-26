@@ -261,6 +261,39 @@ public class CustomizationUIManager : MonoBehaviour
 
             // Populate dropdown with parts
             partsDropdowns.Add(obj.GetComponent<TMP_Dropdown>());
+            List<string> partsNames = new List<string>();
+
+            // Get monster parts names
+            for (int j = 0; j < monsterParts.partsList[i].Length; j++)
+                partsNames.Add(monsterParts.partsList[i][j].name);
+
+            partsNames.Add(NONE_TEXT);  // Add 'None' option for no part
+            partsDropdowns[i].AddOptions(partsNames);   // Add parts names to list
+            partsDropdowns[i].value = player.bodyPartsInt[i]; // Set initial values of dropdown
+            monsterParts.SetBodyPart(i, partsDropdowns[i].value, player);   // Instantiate body parts on card
+        }
+    }
+
+    /*
+    // Populate dropdown with body parts
+    public void PopulatePartsDropdown()
+    {
+        partsDropdowns = new List<TMP_Dropdown>();
+
+        // Create new dropdown objects depending on number of traits indicated
+        for (int i = 0; i < SaveManager.monsterParts.numOfPartsCategories; i++)
+        {
+            // Instantiate dropdown object
+            GameObject obj = Instantiate(partsDropdownObj,
+                new Vector2(appearanceTransform.position.x, appearanceTransform.position.y + partsDropdownSpacing * i),
+                Quaternion.identity,
+                appearanceTransform);
+
+            // Set category label
+            obj.transform.GetComponentInChildren<TMP_Text>().text = SaveManager.monsterParts.partsCategoryNames[i];
+
+            // Populate dropdown with parts
+            partsDropdowns.Add(obj.GetComponent<TMP_Dropdown>());
             List<string> partsPath = new List<string>(Directory.GetFiles(SaveManager.monsterParts.partsDir[i], "*" + FILE_TYPE));
             List<string> partsNames = new List<string>();
 
@@ -276,7 +309,7 @@ public class CustomizationUIManager : MonoBehaviour
             partsDropdowns[i].value = player.bodyPartsInt[i]; // Set initial values of dropdown
             monsterParts.SetBodyPart(i, partsDropdowns[i].value, player);   // Instantiate body parts on card
         }
-    }
+    }*/
 
     // Initialize each parts category
     private void InitializeParts()

@@ -812,12 +812,12 @@ MonoBehaviour:
   ageField: {fileID: 2096861273}
   traitToggleObj: {fileID: 8430647918001070440, guid: 5921364d61198482fb211720b6600ba4, type: 3}
   traitsTransform: {fileID: 2050777969}
-  traitsToggleSpacing: -32
+  traitsToggleSpacing: -44
   monsterParts: {fileID: 2043193763}
   partsDropdownObj: {fileID: 3817954596123822598, guid: 6f353b22f529d438498a54b3d26a6b2b, type: 3}
   appearanceTransform: {fileID: 829739564}
   baseTransform: {fileID: 342422958}
-  partsDropdownSpacing: -94
+  partsDropdownSpacing: -112
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   darkTextColor: {r: 0.19607843, g: 0.1764706, b: 0.24705882, a: 1}
   highlightedTextColor: {r: 1, g: 0.61960787, b: 0, a: 1}
@@ -840,6 +840,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f855f876e02ab4ab5ab85777b8ee27dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partsDir: []
+  numOfPartsCategories: 4
+  partsCategoryNames:
+  - Eyes
+  - Head
+  - Head Decoration
+  - Mouth
+  partsFolderNames: []
+  HEAD_INDEX: 1
+  eyesPrefabs:
+  - {fileID: 5553588066482214395, guid: 18af1b4c47bc844f69240efc89648cae, type: 3}
+  - {fileID: 5950763032061254861, guid: 4f267df1394cc4701a69587ff82f3596, type: 3}
+  - {fileID: 6819193395689984112, guid: 6192f013db7394fc0b2d5d325ff75332, type: 3}
+  - {fileID: 5850774850416619528, guid: 2d2e49d13fba8413c9b3a63165a3b5e8, type: 3}
+  - {fileID: 6027929856836115427, guid: ad7a0e9d9348f4fc8a0b7080aa07d47c, type: 3}
+  - {fileID: 8754082732937370930, guid: b7f7ab7c620914849855a49a926778ed, type: 3}
+  - {fileID: 3852228951606136829, guid: de106d5da17a54dffa264b3741541c19, type: 3}
+  - {fileID: 4428634390585645163, guid: 0baa53fcf02c64ca8baf213104235f2f, type: 3}
+  - {fileID: 6793920268190942841, guid: cf3fd44e265be44bfa62e12dd4119d3c, type: 3}
+  - {fileID: 6005481068862290216, guid: 3bab4f334a67f476d94b2fc2cac803ed, type: 3}
+  headPrefabs:
+  - {fileID: 7580253525693202577, guid: 7274f0a5739cc455eac985877cf58400, type: 3}
+  - {fileID: 7439176443042216410, guid: 266719e47ae804865ba1b53fec72b4e8, type: 3}
+  - {fileID: 8016293846624068194, guid: fd7f8788edc8148a1b2601683c858076, type: 3}
+  - {fileID: 2801026564077546994, guid: 9aee3e51feeb44f16abc2fe596fb569f, type: 3}
+  - {fileID: 7420855102684762061, guid: f1bd4b84fdc8c4e328aaa464a6f56e44, type: 3}
+  - {fileID: 6728165035195584116, guid: 57271b9ba468b467ebbd261cee51579f, type: 3}
+  - {fileID: 8722730645522363904, guid: 1ff0f8df2a0fa4dce9a42d4ab48e889e, type: 3}
+  headDecorPrefabs:
+  - {fileID: 433465639727950883, guid: c02b9219550054dccb570eaf32711719, type: 3}
+  - {fileID: 772825629651515965, guid: 4b55ab950835a4a8c80e4b4cd31c4854, type: 3}
+  - {fileID: 1768281551387064831, guid: 9cdbe2fc08474467aa3d07fe543ea68f, type: 3}
+  - {fileID: 99064874884810396, guid: 83612bf48d5f24024a48d679cf2fcf26, type: 3}
+  - {fileID: 4168036029025007165, guid: dbf4a7461e8f14cceb3504d1c519d5f2, type: 3}
+  mouthPrefabs:
+  - {fileID: 3095152029035554002, guid: 7d710fe21690248ebbf63f849bb77940, type: 3}
+  - {fileID: 6032285339474801848, guid: d468711f58b574326b085791f5829539, type: 3}
+  - {fileID: 9111527751154961244, guid: b4559446f902842c48bb8cb8527ad8f0, type: 3}
+  - {fileID: 1116531902660827864, guid: 551fd60e56dff450fa018484f15c9d20, type: 3}
+  - {fileID: 4617146393848235499, guid: baa02400f50564cc5afc98e3790fffb9, type: 3}
+  - {fileID: 2724275673038011757, guid: 55266a2bd172a4785a00872160d0e643, type: 3}
+  - {fileID: 5852369265779702986, guid: f310c2b373d814c4fb91f6085449c511, type: 3}
+  - {fileID: 1797468559645551059, guid: e1b33999d9d904f8d8624689b785d871, type: 3}
+  - {fileID: 3732599122677241117, guid: 3191f76f6ccdc4b7d9c49b4dd52af9f9, type: 3}
+  - {fileID: 1117805771568234399, guid: 3dc99375b748442e199f9d8bda1d7d3b, type: 3}
   transforms:
   - {fileID: 3298162098025721731}
   - {fileID: 342422958}
