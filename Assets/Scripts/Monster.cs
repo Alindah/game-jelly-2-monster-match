@@ -24,7 +24,7 @@ public class Monster
 
         // Appearance
         baseColor = MonsterParts.RandomizeBaseColor();
-        bodyParts = new GameObject[MonsterParts.numOfPartsCategories];
+        bodyParts = new GameObject[SaveManager.monsterParts.numOfPartsCategories];
         bodyPartsInt = MonsterParts.RandomizeParts();
     }
 

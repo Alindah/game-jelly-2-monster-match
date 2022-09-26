@@ -6,12 +6,12 @@ using static Constants;
 
 public class MonsterParts : MonoBehaviour
 {
-    public static string[] partsDir;
-    public static int numOfPartsCategories;
-    public static string[] partsCategoryNames;
-    public static List<GameObject[]> partsList;
-    public static List<string> partsFolderNames;
-    public static int HEAD_INDEX = 1;   // This is the category part that is the head (MAY CHANGE BASED ON FOLDER ORDER)
+    public string[] partsDir;
+    public int numOfPartsCategories;
+    public string[] partsCategoryNames;
+    public List<GameObject[]> partsList;
+    public List<string> partsFolderNames;
+    public int HEAD_INDEX = 1;   // This is the category part that is the head (MAY CHANGE BASED ON FOLDER ORDER)
 
     public Transform[] transforms;
 
@@ -28,18 +28,18 @@ public class MonsterParts : MonoBehaviour
     public static void InitializeMonsterParts()
     {
         // Initial parts data
-        for (int i = 0; i < numOfPartsCategories; i++)
+        for (int i = 0; i < SaveManager.monsterParts.numOfPartsCategories; i++)
         {
             // Get category labels
             Regex regex = new Regex(PARTS_PATH + '/');
-            partsCategoryNames[i] = regex.Replace(partsDir[i], "");
+            SaveManager.monsterParts.partsCategoryNames[i] = regex.Replace(SaveManager.monsterParts.partsDir[i], "");
 
             // Get category folder names
-            regex = new Regex(Path.GetDirectoryName(partsFolderNames[i]) + '/');
-            partsFolderNames[i] = PARTS_PREFABS_PATH_SHORT + regex.Replace(partsFolderNames[i], "");
+            regex = new Regex(Path.GetDirectoryName(SaveManager.monsterParts.partsFolderNames[i]) + '/');
+            SaveManager.monsterParts.partsFolderNames[i] = PARTS_PREFABS_PATH_SHORT + regex.Replace(SaveManager.monsterParts.partsFolderNames[i], "");
 
             // Add prefabs to each category
-            partsList.Add(InitializePartsPrefabs(partsFolderNames[i]));
+            SaveManager.monsterParts.partsList.Add(InitializePartsPrefabs(SaveManager.monsterParts.partsFolderNames[i]));
         }
     }
 
@@ -69,10 +69,10 @@ public class MonsterParts : MonoBehaviour
     // Randomize body parts
     public static int[] RandomizeParts()
     {
-        int[] partsInt = new int[numOfPartsCategories];
+        int[] partsInt = new int[SaveManager.monsterParts.numOfPartsCategories];
 
-        for (int i = 0; i < numOfPartsCategories; i++)
-            partsInt[i] = Random.Range(0, partsList[i].Length);
+        for (int i = 0; i < SaveManager.monsterParts.numOfPartsCategories; i++)
+            partsInt[i] = Random.Range(0, SaveManager.monsterParts.partsList[i].Length);
 
         return partsInt;
     }
@@ -92,19 +92,19 @@ public class MonsterParts : MonoBehaviour
         for (int i = 0; i < monster.bodyParts.Length; i++)
         {
             // Do not instantiate a part if player chose none for it
-            if (monster.bodyPartsInt[i] >= partsList[i].Length)
+            if (monster.bodyPartsInt[i] >= SaveManager.monsterParts.partsList[i].Length)
                 continue;
 
-            monster.bodyParts[i] = Instantiate(partsList[i][monster.bodyPartsInt[i]], mainTransform);
+            monster.bodyParts[i] = Instantiate(SaveManager.monsterParts.partsList[i][monster.bodyPartsInt[i]], mainTransform);
         }
 
         // Deal with head
-        if (monster.bodyPartsInt[HEAD_INDEX] < partsList[HEAD_INDEX].Length)
+        if (monster.bodyPartsInt[SaveManager.monsterParts.HEAD_INDEX] < SaveManager.monsterParts.partsList[SaveManager.monsterParts.HEAD_INDEX].Length)
         {
             if (moveHead)
-                monster.bodyParts[HEAD_INDEX].transform.parent = baseTransform;
+                monster.bodyParts[SaveManager.monsterParts.HEAD_INDEX].transform.parent = baseTransform;
             else
-                monster.bodyParts[HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
+                monster.bodyParts[SaveManager.monsterParts.HEAD_INDEX].GetComponent<SpriteRenderer>().color = monster.baseColor;
         }
 
         // Color base

@@ -248,7 +248,7 @@ public class CustomizationUIManager : MonoBehaviour
         partsDropdowns = new List<TMP_Dropdown>();
 
         // Create new dropdown objects depending on number of traits indicated
-        for (int i = 0; i < MonsterParts.numOfPartsCategories; i++)
+        for (int i = 0; i < SaveManager.monsterParts.numOfPartsCategories; i++)
         {
             // Instantiate dropdown object
             GameObject obj = Instantiate(partsDropdownObj,
@@ -257,17 +257,17 @@ public class CustomizationUIManager : MonoBehaviour
                 appearanceTransform);
 
             // Set category label
-            obj.transform.GetComponentInChildren<TMP_Text>().text = MonsterParts.partsCategoryNames[i];
+            obj.transform.GetComponentInChildren<TMP_Text>().text = SaveManager.monsterParts.partsCategoryNames[i];
 
             // Populate dropdown with parts
             partsDropdowns.Add(obj.GetComponent<TMP_Dropdown>());
-            List<string> partsPath = new List<string>(Directory.GetFiles(MonsterParts.partsDir[i], "*" + FILE_TYPE));
+            List<string> partsPath = new List<string>(Directory.GetFiles(SaveManager.monsterParts.partsDir[i], "*" + FILE_TYPE));
             List<string> partsNames = new List<string>();
 
             // Format part names for dropdown
             foreach (string str in partsPath)
             {
-                Regex regex = new Regex(MonsterParts.partsDir[i] + '/');
+                Regex regex = new Regex(SaveManager.monsterParts.partsDir[i] + '/');
                 partsNames.Add(regex.Replace(str, "").Replace(FILE_TYPE, ""));
             }
 

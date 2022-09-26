@@ -4,6 +4,7 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
     public static Player player;
+    public static MonsterParts monsterParts;
 
     private void Awake()
     {

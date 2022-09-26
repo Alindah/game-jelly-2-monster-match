@@ -216,10 +216,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742003238}
+  - {fileID: 2038130748}
   - {fileID: 1558337526}
   - {fileID: 398036299691052340}
   - {fileID: 398036299633975221}
-  - {fileID: 2038130748}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -462,7 +462,6 @@ GameObject:
   - component: {fileID: 1317292232}
   - component: {fileID: 1317292231}
   - component: {fileID: 1317292233}
-  - component: {fileID: 1317292234}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -532,18 +531,6 @@ MonoBehaviour:
   likesText: {fileID: 1747109759}
   swipesText: {fileID: 911859143}
   matchmaker: {fileID: 1317292231}
---- !u!114 &1317292234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317292229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c1e92d800944ff7a145324d9d23266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1442567343 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7789774491243837657, guid: 4a16fbce31eed4f24970cdb7305df704, type: 3}
@@ -790,7 +777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7814343856372129733, guid: c160dfb1912d04b44818ee1947faff1e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7814343856372129733, guid: c160dfb1912d04b44818ee1947faff1e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1192,7 +1179,7 @@ RectTransform:
   - {fileID: 1747109758}
   - {fileID: 911859142}
   m_Father: {fileID: 328376349}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
